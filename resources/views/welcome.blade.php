@@ -17,12 +17,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item active d-flex">
                 @if(!(auth()->check()))
                     <a class="nav-link" href="{{route('login')}}">ورود <span class="sr-only">(current)</span></a>
                 @endif
 
-                <a class="nav-link" href="{{route('logout')}}">خروج</a>
+                    <div>
+
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
             </li>
 
         </ul>
