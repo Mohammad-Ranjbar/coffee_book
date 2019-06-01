@@ -9,6 +9,7 @@ class GroupController extends Controller
 {
 	public function show(Group $group)
 	{
-		return $group->get();
+		$lists = $group->get();
+		return view('list',compact('lists'));
 	}
 }
