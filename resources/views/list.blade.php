@@ -3,9 +3,10 @@
 @section('content')
 
 		<div align="right" dir="rtl" style="font-size: 20px;">
+
 			@foreach($lists  as $list)
 				<ul>
-					<li><a href="{{route('list-book',$list->id)}}">{{$list->name}}</a></li>
+					<li><a href="{{route('list-book',['group' => $list->id])}}">{{$list->name}}</a></li>
 				</ul>
 			@endforeach
 		</div>

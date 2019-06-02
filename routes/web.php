@@ -18,9 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/list-book', 'GroupController@show')->name('list-book');
+Route::get('/list-group', 'GroupController@show')->name('list-group');
 Route::post('/list-book', 'GroupController@store')->name('post-list');
-
+Route::get('/listOfBook/{group}','GroupController@listOfBook')->name('list-book');
 
 
 //Route::get('/logout', 'Auth\LoginController@logout ')->name('logout');

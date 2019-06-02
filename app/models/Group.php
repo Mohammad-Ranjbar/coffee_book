@@ -9,6 +9,6 @@ class Group extends Model
 	protected $fillable = ['name' , 'description' ,'book_id'];
 	public function books()
 	{
-	    return $this->hasMany(Book::class,'book_id');
+	    return $this->hasMany(Book::class);
 	}
 }

@@ -22,6 +22,11 @@ class CreateBooksTable extends Migration
             $table->string('description');
             $table->string('ISBN');
             $table->timestamps();
+
+	        $table->foreign('group_id')
+	              ->references('id')
+	              ->on('groups')
+	              ->onDelete('cascade');
         });
     }
 

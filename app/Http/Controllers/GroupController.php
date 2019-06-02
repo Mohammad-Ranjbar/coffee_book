@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GroupListRequest;
+use App\models\Book;
 use App\models\Group;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GroupController extends Controller
 {
@@ -12,6 +14,13 @@ class GroupController extends Controller
 	{
 		$lists = $group->get();
 		return view('list',compact('lists'));
+	}
+	public function listOfBook(Group $group)
+	{
+			$lists = $group->books;
+		    return view('list-book', compact('lists'));
+
+
 	}
 
 	public function store(Group $group,GroupListRequest $request)
