@@ -17,10 +17,9 @@ class GroupController extends Controller
 	}
 	public function listOfBook(Group $group)
 	{
-			$lists = $group->books;
-		    return view('list-book', compact('lists'));
 
-
+		$lists = $group->books;
+		return view('list-book', compact('lists' , 'group'));
 	}
 
 	public function store(Group $group,GroupListRequest $request)

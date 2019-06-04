@@ -5,22 +5,20 @@
 
 
 	<div align="right" dir="rtl" style="font-size: 20px;">
+			@forelse($lists as $list )
 
+				<ul>
+						<li>{{$list->name}}</li>
+				</ul>
+			@empty
+				<p>کتابی در این دسته موجود نیست</p>
 
-{{--{{dd($lists->toArray())}}--}}
-
-		@if(!empty($lists))
-		@foreach($lists  as $list)
-			<ul>
-				<li>{{$list->name}}</li>
-			</ul>
-		@endforeach
-		@endif
+			@endforelse
 	</div>
 
 
 	<div class=" border" align="right" dir="rtl">
-		<form action="{{route('add-book',['group' => $lists[0]->group_id])}}" method="post" role="form">
+		<form action="{{route('add-book',['group' => $group->id])}}" method="post" role="form">
 			@csrf
 			<legend class="navbar-brand">اضافه کردن کتاب</legend>
 
