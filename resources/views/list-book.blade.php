@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 	<div align="right" dir="rtl" style="font-size: 20px;">
 			@forelse($lists as $list )
 
@@ -16,7 +14,7 @@
 			@endforelse
 	</div>
 
-
+@if(auth()->check())
 	<div class=" border" align="right" dir="rtl">
 		<form action="{{route('add-book',['group' => $group->id])}}" method="post" role="form">
 			@csrf
@@ -46,5 +44,6 @@
 			<button type="submit" class="btn btn-primary">تایید</button>
 		</form>
 	</div>
+	@endif
 
 @endsection
