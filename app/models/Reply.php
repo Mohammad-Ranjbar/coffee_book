@@ -32,8 +32,29 @@ class Reply extends Model
     {
 	    $attributes = ['user_id' => auth()->id()];
 		$this->favorites()->get()->each->delete();
-
     }
+    public function thread()
+    {
+    	return $this->belongsTo(Thread::class);
+    }
+    //functions
+	public function isFavorite()
+	{
+	    return $this->favorites()->where('user_id',auth()->id())->exists();
+	}
 
+	public function getFavoritesCountAttribute()
+	{
+	    return $this->favorites()->count();
+	}
 
+	public function getIsFavoritedAttribute()
+	{
+	    return $this->isFavorite();
+	}
+
+	public function path()
+	{
+	    return $this->thread->path()."#reply-{$this->id}";
+	}
 }
