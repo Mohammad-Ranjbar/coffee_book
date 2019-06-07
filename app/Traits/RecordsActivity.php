@@ -9,7 +9,7 @@
 namespace App\Traits;
 
 
-use App\Models\Activity;
+use App\models\Activity;
 use function foo\func;
 
 trait RecordsActivity
@@ -40,7 +40,7 @@ trait RecordsActivity
 
 	public function activity()
 	{
-		return $this->morphMany('App\Models\Activity', 'subject');
+		return $this->morphMany('App\models\Activity', 'subject');
 	}
 
 	protected function getActivityType($event)

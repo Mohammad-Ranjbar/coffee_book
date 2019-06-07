@@ -36,4 +36,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+	// Relations
+
+	public function threads()
+	{
+		return $this->hasMany(Thread::class)->latest();
+	}
+
+	public function activity()
+	{
+		return $this->hasMany(Activity::class);
+	}
+
+
+	// Functions
+	public function getRouteKeyName()
+	{
+		return 'name'; // username
+	}
 }

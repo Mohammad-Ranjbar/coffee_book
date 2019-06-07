@@ -27,22 +27,24 @@ use PhpParser\Builder;
  */
 class Thread extends Model
 {
+
 	use RecordsActivity;
 
 	protected $guarded = [];
 
 	protected $appends = ['IsSubscribed'];
-
-	protected static function boot()
-	{
-		static::deleting(function ($thread) {
-			$thread->replies->each->delete();
-		});
-
-		static::created(function ($thread) {
-			$thread->recordActivity('created');
-		});
-	}
+	//
+	// protected static function boot()
+	// {
+	// 	static::deleting(function ($thread) {
+	//
+	// 		$thread->replies->each->delete();
+	// 	});
+	//
+	// 	static::created(function ($thread) {
+	// 		$thread->recordActivity('created');
+	// 	});
+	// }
 
 	//relations
 	public function replies()

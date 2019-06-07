@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Threads\ThreadStoreRequest;
-use App\Models\Channel;
-use App\Models\Thread;
-use App\Models\User;
+use App\models\Channel;
+
+use App\models\Thread;
+use App\models\User;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
@@ -28,7 +29,8 @@ class ThreadsController extends Controller
 
 		if ($channel->exists) {
 			$threads = $channel->threads();
-		} else {
+		}
+		else {
 			$threads = Thread::query();
 		}
 
@@ -51,7 +53,7 @@ class ThreadsController extends Controller
 		}
 
 		$threads = $threads->get();
-		return view('threads.index')->with(['threads' => $threads]);
+		return view('Forum.threads.index',compact('threads'));
 	}
 
 	/**
@@ -61,7 +63,7 @@ class ThreadsController extends Controller
 	 */
 	public function create()
 	{
-		return view('threads.create');
+		return view('Forum.threads.create');
 	}
 
 	/**
@@ -90,7 +92,7 @@ class ThreadsController extends Controller
 	 */
 	public function show($channel, Thread $thread)
 	{
-		return view('threads.show')
+		return view('Forum.threads.show')
 			->with([
 				'thread'  => $thread,
 				'replies' => $thread->replies()->paginate(10),

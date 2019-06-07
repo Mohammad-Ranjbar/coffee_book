@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Favorite;
-use App\Models\Reply;
+use App\models\Favorite;
+use App\models\Reply;
 use function Couchbase\basicDecoderV1;
 use Illuminate\Http\Request;
 

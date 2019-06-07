@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Thread;
+use App\models\Thread;
 use Illuminate\Http\Request;
 
 class ThreadSubscriptionsController extends Controller
