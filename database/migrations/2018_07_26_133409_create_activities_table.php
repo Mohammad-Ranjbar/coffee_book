@@ -14,14 +14,15 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('subject_id');
-            $table->string('subject_type');
+            $table->increments('id');
             $table->string('type');
-            $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('user_id')->nullable();
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->unsignedInteger('subject_id');
+			$table->string('subject_type');
+
+            $table->timestamps();
         });
     }
 
