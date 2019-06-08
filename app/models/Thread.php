@@ -33,7 +33,7 @@ class Thread extends Model
 	protected $guarded = [];
 
 	protected $appends = ['IsSubscribed'];
-	//
+
 	// protected static function boot()
 	// {
 	// 	static::deleting(function ($thread) {

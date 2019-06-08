@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -36,7 +38,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        @foreach(App\Models\Channel::all() as $channel)
+                        @foreach(App\models\Channel::all() as $channel)
                             <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
                         @endforeach
 
@@ -80,3 +82,4 @@
         </div>
     </div>
 </nav>
+

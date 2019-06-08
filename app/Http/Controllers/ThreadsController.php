@@ -63,7 +63,9 @@ class ThreadsController extends Controller
 	 */
 	public function create()
 	{
-		return view('Forum.threads.create');
+		$channels = Channel::all();
+
+		return view('Forum.threads.create',compact('channels'));
 	}
 
 	/**

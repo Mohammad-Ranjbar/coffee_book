@@ -15,6 +15,6 @@ class ChannelsController extends Controller
 		} else {
 			$threads = Thread::latest()->get();
 		}
-		return view('threads.index')->with(['threads' => $threads]);
+		return view('Forum.threads.index')->with(['threads' => $threads]);
     }
 }

@@ -11,7 +11,7 @@ class ProfilesController extends Controller
 	{
 		$activities = $user->activity()->with('subject')->get();
 
-		return view('Profiles.show')->with([
+		return view('Forum.Profiles.show')->with([
 			'profile_user' => $user,
 			'threads'      => $user->threads()->paginate(10),
 			'activities'   => $activities,
