@@ -3,7 +3,7 @@
 
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{'کافه بوک' }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -15,26 +15,26 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Browse
+                        جستجو
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/threads">All Threads</a>
+                        <a class="dropdown-item" href="/threads">تمام نوشتار ها</a>
                         @if(auth()->check())
                             <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
                         @endif
-                        <a class="dropdown-item" href="/threads?popular=1">Popular Threads</a>
-                        <a class="dropdown-item" href="/threads?unanswered=1">Unanswered Thread</a>
+                        <a class="dropdown-item" href="/threads?popular=1">نوشتار های مطرح</a>
+                        <a class="dropdown-item" href="/threads?unanswered=1">نوشتار های بدون جواب</a>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/threads/create">New Thread</a>
+                    <a class="nav-link" href="/threads/create">نوشتار جدید</a>
                 </li>
 
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Channels
+                        موضوعات
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -52,10 +52,10 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('ورود') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('ثبت نام') }}</a>
                     </li>
                 @else
                     <user-notifications user="{{ Auth::user()->name }}"></user-notifications>
@@ -68,10 +68,10 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('خروج') }}
                             </a>
 
-                            <a href="{{ route('profile', auth()->user()) }}" class="dropdown-item">My Profile</a>
+                            <a href="{{ route('profile', auth()->user()) }}" class="dropdown-item">صفحه ی من</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

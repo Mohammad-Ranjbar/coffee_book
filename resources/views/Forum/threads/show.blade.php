@@ -13,7 +13,7 @@
                                 @csrf
                                 {{ method_field('DELETE') }}
 
-                                <button type="submit" class="btn btn-danger">Delete Thread</button>
+                                <button type="submit" class="btn btn-danger">حذف نوشتار</button>
                             </form>
                         @endcan
                     </div>
@@ -49,8 +49,8 @@
                                         <textarea class="form-control" v-model="body">{{$reply->body}}</textarea>
                                     </div>
 
-                                    <button class="btn btn-primary" @click="update">Update</button>
-                                    <button class="btn btn-warning" @click="editing=false">Cancel</button>
+                                    <button class="btn btn-primary" @click="update">بروز رسانی</button>
+                                    <button class="btn btn-warning" @click="editing=false">انصراف</button>
 
                                 </div>
                                 <div v-else v-text="body"></div>
@@ -60,9 +60,8 @@
 
                             @can('update', $reply)
                                 <div class="card-footer">
-                                    <button class="btn btn-primary" style="float: right" @click="editing = true">Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-danger" @click="destroy">Delete</button>
+                                    <button class="btn btn-primary" style="float: right" @click="editing = true">ویرایش</button>
+                                    <button type="submit" class="btn btn-danger" @click="destroy">حذف</button>
                                 </div>
                             @endcan
 
@@ -77,7 +76,7 @@
                     <form action="{{ $thread->path() }}/addReply" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="body">Body: </label>
+                            <label for="body">بدنه: </label>
                             <textarea name="body" id="body" class="form-control"></textarea>
                         </div>
 
@@ -89,9 +88,9 @@
 
             <div class="col-md-4">
                 <div class="card card-default">
-                    <div class="card-body">
+                    <div class="card-body" align="right" dir="rtl">
                         <p>
-                            This thread was published {{ $thread->created_at->diffForHumans() }} by <a
+                            این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a
                                     href="#"> {{ $thread->owner->name }}</a>, and currently
                             has {{ $thread->replies_count }} {{ str_plural('comment', $thread->replies->count()) }}.
                         </p>

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header"> Forum Threads</div>
+                    <div class="card-header" align="right" dir="rtl"> نوشتار انجمن</div>
 
                     <div class="card-body">
 
@@ -23,7 +23,7 @@
                                             @csrf
                                             {{ method_field('DELETE') }}
 
-                                            <button type="submit" class="btn btn-danger">Delete Thread</button>
+                                            <button type="submit" class="btn btn-danger">حذف نوشتار</button>
                                         </form>
                                     @endcan
 
@@ -36,7 +36,7 @@
                             <hr>
 
                         @empty
-                            <p>There are no relevant results at this time.</p>
+                            <p>هیچ نوشتاری یافت نشد</p>
                         @endforelse
 
                     </div>
