@@ -12,9 +12,9 @@
                         @forelse($threads as $thread)
 
                             <article>
-                                <div class="level" style="display: flex; align-items: center;">
+                                <div class="level" align="right" dir="rtl" style="display: flex; align-items: center;">
 
-                                    <h4 style="flex: 1"> <a href="{{ route('profile', $thread->owner->name) }}">{{ $thread->owner->name }}</a> posted:
+                                    <h4 style="flex: 1"> <a href="{{ route('profile', $thread->owner->name) }}">{{ $thread->owner->name }}</a> عنوان نوشتار :
                                         <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                     </h4>
 
@@ -27,9 +27,9 @@
                                         </form>
                                     @endcan
 
-                                    <strong>{{ $thread->replies->count() }} {{ str_plural('reply', $thread->replies->count()) }}</strong>
+                                    <strong>{{ $thread->replies->count() }} نظرات</strong>
                                 </div>
-                                <div class="body">{{ $thread->body }}</div>
+                                <div class="body" align="right" dir="rtl">{{ $thread->body }}</div>
 
 
                             </article>

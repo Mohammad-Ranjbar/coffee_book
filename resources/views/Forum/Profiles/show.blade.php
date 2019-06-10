@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-2">
-                <div class="page-header">
+                <div class="page-header" align="right" dir="rtl">
                     <h1>
-                        {{ $profile_user->name }}
-                        <small> Since {{ $profile_user->created_at->diffForHumans() }}</small>
+                        {{ $profile_user->name }} ...
+                        <small > از تاریخ : {{ $profile_user->created_at->diffForHumans() }}</small>
                     </h1>
                 </div>
 

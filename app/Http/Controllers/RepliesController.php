@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Reply\ReplyRequest;
 use App\models\Reply;
 use App\models\Thread;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class RepliesController extends Controller
 	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request, $channel, Thread $thread)
+	public function store(ReplyRequest $request, $channel, Thread $thread)
 	{
 		$thread->addReply([
 			'user_id' => auth()->id(),

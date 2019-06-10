@@ -2,11 +2,13 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row"  align="rigt" dir="rtl">
+            <div class="col-md-8" >
                 <div class="card">
-                    <div class="card-header"><h3 style="float: left"><a
-                                    href="{{ $thread->path() }}">{{ $thread->title }}</a></h3>
+                    <div class="card-header">
+	                    <h3 style="float: right">
+		                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+	                    </h3>
 
                         @can('update', $thread)
                             <form action="{{ $thread->path() }}" method="post" style="float: right;">
@@ -18,7 +20,7 @@
                         @endcan
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body" align="right" dir="rtl">
 
                         {{ $thread->body }}
 
@@ -75,12 +77,12 @@
                 @if(auth()->check())
                     <form action="{{ $thread->path() }}/addReply" method="POST">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group" align="right" dir="rtl">
                             <label for="body">بدنه: </label>
                             <textarea name="body" id="body" class="form-control"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" style="float: right">تایید</button>
 
                     </form>
                 @endif
@@ -90,23 +92,21 @@
                 <div class="card card-default">
                     <div class="card-body" align="right" dir="rtl">
                         <p>
-                            این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a
-                                    href="#"> {{ $thread->owner->name }}</a>, and currently
-                            has {{ $thread->replies_count }} {{ str_plural('comment', $thread->replies->count()) }}.
+                            این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a href="#"> {{ $thread->owner->name }}</a>, و در حال حاضر  {{ $thread->replies_count }} باز خورد داشته است.
                         </p>
 
                         @if(!$thread->isSubscribed)
                             <p>
                             <form action="{{ $thread->path() }}/subscription" method="POST">
                                 @csrf
-                                <button class="btn btn-primary" name="submit">Subscribe</button>
+                                <button class="btn btn-primary" name="submit">نوشته را دنبال کن</button>
                             </form>
 
                         @else
                             <form action="{{ $thread->path() }}/subscription" method="POST">
                                 @csrf
                                 {{method_field('delete')}}
-                                <button class="btn btn-warning" name="submit">UnSubscribe</button>
+                                <button class="btn btn-warning" name="submit">نوشتار را دنبال نکن</button>
                             </form>
                             </p>
                         @endif
