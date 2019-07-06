@@ -19,7 +19,7 @@ Auth::routes();
 //Forum
 Route::get('/Forum','ThreadsController@index')->name('Forum');
 
-
+Route::get('profile','UserController@profile');
 Route::get('/threads', 'ThreadsController@index')->name('threads');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
 Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy')->name('delete_thread');
