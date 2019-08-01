@@ -25,7 +25,7 @@ class UserController extends Controller
 	    }
 	    $user->name   = $request->name;
 	    $user->save();
-	    return view('profile',array('user' => Auth::user()));
+	    return back();
 
 
     }
