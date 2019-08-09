@@ -11,7 +11,12 @@
 |
 */
 
+use App\models\User;
+use App\Notifications\StateUser;
+
 Route::get('/', function () {
+	$user = User::find(1);
+	auth()->user()->notify(new StateUser($user));
     return view('welcome');
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\models\User;
 use App\Http\Controllers\Controller;
+use Camroncade\Timezone\Timezone;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,6 +68,16 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+	        'timezone' => $data['timezone'],
         ]);
+    }
+    public function showRegistrationForm()
+    {
+        $timezone_select = (new Timezone) -> selectForm(
+        	'Europe/London',
+	                '',
+	                ['class' => 'form-control','name' => 'timezone']
+        );
+        return view('auth.register',compact('timezone_select'));
     }
 }
