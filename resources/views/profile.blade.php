@@ -25,7 +25,7 @@
 
 			<div class="form-group" align="right" dir="rtl">
 				<label for="name">تغیر نام کاربری</label>
-				<input type="text" class="form-control" name="name" id="name" placeholder="نام کاربری ...">
+				<input type="text" class="form-control" name="name" id="name" value="{{auth()->user()->name}}" >
 				<label for="avatar">  تغییر عکس</label>
 				<input type="file" class="custom-file" name="avatar" id="avatar" >
 				<button type="submit" class="btn btn-primary mt-3" dir="rtl">تایید</button>

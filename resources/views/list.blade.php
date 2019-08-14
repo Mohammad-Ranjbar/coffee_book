@@ -4,7 +4,8 @@
 
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
+
+			<div class="col-md-6">
 				<div class="card border-dark">
 					<div class="card-header" align="right" dir="rtl"> دسته بندی</div>
 			<div align="right" dir="rtl" style="font-size: 20px;">
@@ -18,12 +19,14 @@
 
 				</div>
 			</div>
+			<div CLASS="col-md-3"><div class="card border-dark">info</div></div>
 		</div>
 	</div>
 	<br><br>
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-8">
+		<div class="row justify-content-center" >
+
+			<div class="col-md-9">
 					<div class="card border-dark">
 						<div class="card-header" align="right" dir="rtl">اضافه کردن دسته </div>
 

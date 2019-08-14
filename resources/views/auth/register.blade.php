@@ -66,15 +66,7 @@
 									       required autocomplete="new-password">
 								</div>
 							</div>
-							<div class="form-group row" align="right" dir="rtl">
-								<label for="password-confirm"
-								       class="col-md-2 col-form-label text-md-center">{{ __('منطقه زمانی') }}</label>
 
-								<div class="col-md-6" dir="ltr">
-
-									{!! $timezone_select !!}
-								</div>
-							</div>
 
 							<div class="form-group row mb-0">
 								<div class="col-md-6 offset-md-4">
