@@ -32,25 +32,21 @@
 						</div>
 						<div class="form-group">
 							<label for="description">توضیحات دسته</label>
-							<input type="text" class="form-control" name="description" id="description"
+							<input type="text" class="form-control" onblur="sweet()" name="description" id="description"
 							       value="{{old('description')}}">
 						</div>
-						<button type="submit" class="btn btn-primary col-md-12">تایید</button>
+						<button type="submit" class="btn btn-primary col-md-12"  >تایید</button>
+
+
+
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<br><br>
-	<div class="container">
-		<div class="row justify-content-center">
-
-		</div>
-	</div>
-
-
-
-
-
-
+<script >
+	function sweet() {
+		Swal.fire('Any fool can use a computer');
+	}
+</script>
 @endsection
