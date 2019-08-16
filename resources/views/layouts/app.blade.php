@@ -12,9 +12,7 @@
 	<!-- Scripts -->
 	<script src="{{ asset('js/app.js') }}" defer></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -22,95 +20,92 @@
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-	<style>
-		.active, .dropdown-item:hover {
-			background-color: #666;
-			color: white;
-		}
-	</style>
+
 
 	{{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
 </head>
 <body>
-	<div id="app">
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-			<div class="container">
-				<a class="navbar-brand" href="{{ url('/') }}">
-					{{ config('app.name', 'Laravel') }}
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<!-- Left Side Of Navbar -->
-					<ul class="navbar-nav mr-auto">
-
-					</ul>
-
-					<!-- Right Side Of Navbar -->
-					<ul class="navbar-nav ml-auto">
-						<!-- Authentication Links -->
-						@guest
-							<li class="nav-item">
-								<a class="nav-link" href="{{ route('login') }}">{{ __('ورود') }}</a>
-							</li>
-							@if (Route::has('register'))
-								<li class="nav-item">
-									<a class="nav-link" href="{{ route('register') }}">{{ __('ثبت نام') }}</a>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg bg-dark " >
+		<!-- Navbar brand -->
+		<a class="navbar-brand" href="#">کافه کتاب</a>
+		<!-- Collapse button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+		        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Collapsible content -->
+		<div class="collapse navbar-collapse" id="basicExampleNav" >
+			<!-- Links -->
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">ثبت نام / ورود
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">دسته بندی کتب</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Pricing</a>
+				</li>
+				<!-- Dropdown -->
+				<li class="nav-item dropdown multi-level-dropdown ">
+					<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle w-100">انجمن</a>
+					<ul class="dropdown-menu mt-2 rounded-0 primary-color border-0 z-depth-1">
+						<li class="dropdown-item dropdown-submenu p-0">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-white w-100">Click Me Too! </a>
+							<ul class="dropdown-menu ml-2 rounded-0  border-0 z-depth-1">
+								<li class="dropdown-item p-0">
+									<a href="#" class="text-white w-100">Hey</a>
 								</li>
-							@endif
-						@else
-							<li class="nav-item dropdown">
-								<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-								   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-								   style="position: relative; padding-left: 50px;">
-									<img src="/uploads/avatars/{{Auth::user()->avatar}}"
-									     style="width: 32px; height: 32px; position: absolute; top: 10px; left: 10px; border-radius: 50%;">
-									{{ Auth::user()->name }} <span class="caret"></span>
-								</a>
-
-								<div class="dropdown-menu dropdown-menu-right" id="dropdown" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item"  href="{{ route('logout') }}"
-									   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-										{{ __('خروج') }}
-									</a>
-									<a class="dropdown-item" href="{{url('/profile')}}"><i
-												class="fa fa-btn fa-user"></i>Profile</a>
-
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										@csrf
-									</form>
-								</div>
-							</li>
-						@endguest
+								<li class="dropdown-item p-0">
+									<a href="#" class="text-white w-100">Hi</a>
+								</li>
+								<li class="dropdown-item dropdown-submenu p-0">
+									<a href="#" data-toggle="dropdown" class="dropdown-toggle text-white w-100">Hello </a>
+									<ul class="dropdown-menu mr-2 rounded-0 primary-color border-0 z-depth-1 r-100 ">
+										<li class="dropdown-item p-0">
+											<a href="#" class="text-white w-100">Some</a>
+										</li>
+										<li class="dropdown-item p-0">
+											<a href="#" class="text-white w-100">Text</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown-item dropdown-submenu">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-white w-100">Click me </a>
+							<ul class="dropdown-menu mr-2 rounded-0  primary-color border-0 z-depth-1 r-100 ">
+								<li class="dropdown-item p-0">
+									<a href="#" class="text-white w-100">How</a>
+								</li>
+								<li class="dropdown-item p-0">
+									<a href="#" class="text-white w-100">are</a>
+								</li>
+								<li class="dropdown-item p-0">
+									<a href="#" class="text-white w-100">you </a>
+								</li>
+							</ul>
+						</li>
 					</ul>
+				</li>
+			</ul>
+			<!-- Links -->
+			<form class="form-inline">
+				<div class="md-form my-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
 				</div>
-			</div>
-		</nav>
-
-		<main class="py-4">
-			@yield('content')
-		</main>
+			</form>
+		</div>
+		<!-- Collapsible content -->
+	</nav>
+	<!--/.Navbar-->
+	<main class="py-4">
+		@yield('content')
+	</main>
 
 	</div>
-	<script>
-
-		// Add active class to the current button (highlight it)
-		var header = document.getElementById('dropdown');
-		var btns   = header.getElementsByClassName('dropdown-item');
-		for (var i = 0; i < btns.length; i++) {
-			btns[i].addEventListener('click', function () {
-				var current = document.getElementsByClassName('active');
-				if (current.length > 0) {
-					current[0].className = current[0].className.replace(' active', '');
-				}
-				this.className += ' active';
-			});
-		}
-	</script>
-
 </body>
 </html>
