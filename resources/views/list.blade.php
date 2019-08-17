@@ -8,9 +8,9 @@
 				<div class="popover-header" align="center" dir="rtl" style="background-color: #5a6268;color: aliceblue"> دسته
 					بندی
 				</div>
-				<div class="list-group" align="center" dir="rtl" style="font-size: 20px;">
+				<div class="list-group" align="center" on dir="rtl"  style="font-size: 20px;">
 					@foreach($lists  as $list)
-						<ul class="list-group-item">
+						<ul class="list-group-item" >
 							<li class="list-group-item "><a data-toggle="tooltip" data-placement="right"
 							                                title="{{$list->description}}"
 							                                href="{{route('list-book',['group' => $list->id])}}">{{$list->name}}</a>
@@ -32,10 +32,10 @@
 						</div>
 						<div class="form-group">
 							<label for="description">توضیحات دسته</label>
-							<input type="text" class="form-control" onblur="sweet()" name="description" id="description"
+							<input type="text" class="form-control"  name="description" id="description"
 							       value="{{old('description')}}">
 						</div>
-						<button type="submit" class="btn btn-primary col-md-12"  >تایید</button>
+						<button type="submit" class="btn btn-primary col-md-12" >تایید</button>
 
 
 
@@ -45,8 +45,8 @@
 		</div>
 	</div>
 <script >
-	function sweet() {
-		Swal.fire('Any fool can use a computer');
+	function  sweet() {
+		alert('your request has proces');
 	}
 </script>
 @endsection

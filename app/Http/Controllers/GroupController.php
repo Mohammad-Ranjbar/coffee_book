@@ -28,6 +28,6 @@ class GroupController extends Controller
 				'name' => $request->name,
 		         'description' => $request->description
 	    ]);
-	    return redirect()->back();
+	    return back();
 	}
 }
