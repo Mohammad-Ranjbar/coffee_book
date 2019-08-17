@@ -9,13 +9,13 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8 border" align="right" dir="rtl" style="font-size: 20px;">
 				@forelse($lists as $list )
-
 					<ul>
-						<li>{{$list->name}}</li>
+						<a href="{{route('show-book',['book'=>$group->name,'group'=>str_replace(' ','_',$list->name)])}}">
+							<li>{{$list->name}}</li>
+						</a>
 					</ul>
 				@empty
-					<p>کتابی در این دسته موجود نیست</p>
-
+					<p align="center">کتابی در این دسته موجود نیست</p>
 				@endforelse
 			</div>
 

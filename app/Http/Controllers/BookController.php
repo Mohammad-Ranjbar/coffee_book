@@ -7,7 +7,6 @@ use Illuminate\Filesystem\Filesystem as File;
 use Illuminate\Http\Request;
 use Image;
 
-
 class BookController extends Controller
 {
 	/**
@@ -17,19 +16,13 @@ class BookController extends Controller
 	 */
 	public function addBookFromGroup(Request $request, $group)
 	{
-
-		$book = new Book;
-		if ($request->hasFile('image')) {
-			$image    = $request->file('image');
-			$filename = time() . '.' . $image->getClientOriginalExtension();
-			$path = public_path().'/uploads/'.$request->name.'/';
-			$file = new File();
-			$file->makeDirectory($path, $mode = 0777, true, true);
-			// dd($path);
-			Image::make($image)->resize(300, 300)->save($path.$filename);
-			$book->image = $filename;
-		}
-
+		$book     = new Book;
+		$image    = $request->file('image');
+		$filename = time() . '.' . $image->getClientOriginalExtension();
+		$path     = public_path() . '/uploads/' . $request->name . '/';
+		$file     = new File();
+		$file->makeDirectory($path, $mode = 0777, true, true);
+		Image::make($image)->resize(300, 300)->save($path . $filename);
 		$book->create([
 			'name'        => $request->name,
 			'author'      => $request->author,
@@ -37,8 +30,16 @@ class BookController extends Controller
 			'publication' => $request->publication,
 			'description' => $request->description,
 			'group_id'    => $group,
+			'image'       => $filename,
 		]);
 
 		return back();
+	}
+
+	public function showBookFromGroup($book, $group)
+	{
+		$name = str_replace('_', ' ', $book);
+		$find = Book::where('name', '=', $name)->first();
+		dd($find->name);
 	}
 }

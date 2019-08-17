@@ -19,6 +19,7 @@ class GroupController extends Controller
 	{
 
 		$lists = $group->books;
+
 		return view('list-book', compact('lists' , 'group'));
 	}
 
