@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Book;
+use App\models\Group;
 use Illuminate\Filesystem\Filesystem as File;
 use Illuminate\Http\Request;
 use Image;
@@ -51,11 +52,9 @@ class BookController extends Controller
 		return back();
 	}
 
-	public function showBookFromGroup($book, $group)
+	public function showBookFromGroup(Group $group,$book)
 	{
-		$name = str_replace('_', ' ', $book);
-		$find = Book::where('name', '=', $name)->first();
-
-		return view('showBook', compact('find'));
+$book1 = Book::find($book);
+		return view('showBook', compact('book1','group'));
 	}
 }

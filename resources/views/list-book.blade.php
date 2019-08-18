@@ -6,11 +6,13 @@
 		<div dir="rtl" align="center">
 			<legend>کتب دسته ی {{$group->name}}</legend>
 		</div>
+
 		<div class="row justify-content-center">
-			<div class="col-md-8 border" align="right" dir="rtl" style="font-size: 20px;">
+			<div class="col-md-8 border"  style="font-size: 20px;">
 				@forelse($lists as $list )
 					<ul>
-						<a href="{{route('show-book',['book'=>$group->name,'group'=>str_replace(' ','_',$list->name)])}}">
+
+						<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
 							<li>{{$list->name}}</li>
 						</a>
 					</ul>
