@@ -16,22 +16,37 @@ class BookController extends Controller
 	 */
 	public function addBookFromGroup(Request $request, $group)
 	{
-		$book     = new Book;
-		$image    = $request->file('image');
-		$filename = time() . '.' . $image->getClientOriginalExtension();
-		$path     = public_path() . '/uploads/' . $request->name . '/';
-		$file     = new File();
-		$file->makeDirectory($path, $mode = 0777, true, true);
-		Image::make($image)->resize(300, 300)->save($path . $filename);
-		$book->create([
-			'name'        => $request->name,
-			'author'      => $request->author,
-			'ISBN'        => $request->ISBN,
-			'publication' => $request->publication,
-			'description' => $request->description,
-			'group_id'    => $group,
-			'image'       => $filename,
-		]);
+		$book = new Book;
+		$file = new File();
+
+		if ($request->hasFile('image')) {
+			$image    = $request->file('image');
+			$fileName = time() . '.' . $image->getClientOriginalExtension();
+			$filePath = '/uploads/Books/' . $request->name . '/';
+			$Path     = public_path('/uploads/Books/') . $request->name . '/';
+			$file->makeDirectory($Path, $mode = 0777, true, true);
+			Image::make($image)->insert(public_path('/uploads/Books/logo.png'),  'bottom-right', 10, 10)->resize(300, 300)->save($Path . $fileName);
+
+			$book->name         = $request->name;
+			$book->author       = $request->author;
+			$book->ISBN         = $request->ISBN;
+			$book->publication  = $request->publication;
+			$book->description  = $request->description;
+			$book->group_id     = $group;
+			$book->imageAddress = $filePath;
+			$book->imageName    = $fileName;
+			$book->save();
+		} else {
+			$book->create([
+				'name'        => $request->name,
+				'author'      => $request->author,
+				'ISBN'        => $request->ISBN,
+				'publication' => $request->publication,
+				'description' => $request->description,
+				'group_id'    => $group,
+
+			]);
+		}
 
 		return back();
 	}
@@ -40,6 +55,7 @@ class BookController extends Controller
 	{
 		$name = str_replace('_', ' ', $book);
 		$find = Book::where('name', '=', $name)->first();
-		dd($find->name);
+
+		return view('showBook', compact('find'));
 	}
 }

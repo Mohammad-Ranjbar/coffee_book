@@ -21,7 +21,8 @@ class CreateBooksTable extends Migration
 			$table->string('publication');
 			$table->string('description');
 			$table->string('ISBN');
-			$table->string('image')->default('image.png')->nullable();
+			$table->string('imageName')->default('image.png');
+			$table->string('imageAddress')->default('/uploads/Books/');
 			$table->timestamps();
 
 			$table->foreign('group_id')
