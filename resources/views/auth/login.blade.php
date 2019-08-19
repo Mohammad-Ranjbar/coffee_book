@@ -1,239 +1,244 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 
-{{--@section('content')--}}
-{{--<div class="container">--}}
-{{--<div class="row justify-content-center">--}}
-{{--<div class="col-md-8">--}}
-{{--<div class="card">--}}
-{{--<div class="card-header" align="right" style="font-size: 20px;">{{ __('ورود') }}</div>--}}
-
-{{--<div class="card-body" >--}}
-{{--<form method="POST" action="{{ route('login') }}">--}}
-{{--@csrf--}}
-
-{{--<div class="form-group row" align="right" dir="rtl">--}}
-{{--<label for="email" class="col-md-2 col-form-label text-md-left" dir="rtl">{{ __('ایمیل') }}</label>--}}
-
-{{--<div class="col-md-6">--}}
-{{--<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>--}}
-
-{{--@error('email')--}}
-{{--<span class="invalid-feedback" role="alert">--}}
-{{--<strong>{{ $message }}</strong>--}}
-{{--</span>--}}
-{{--@enderror--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div class="form-group row" align="right" dir="rtl">--}}
-{{--<label for="password" class="col-md-2 col-form-label text-md-left">{{ __('گذر واژه') }}</label>--}}
-
-{{--<div class="col-md-6">--}}
-{{--<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">--}}
-
-{{--@error('password')--}}
-{{--<span class="invalid-feedback" role="alert">--}}
-{{--<strong>{{ $message }}</strong>--}}
-{{--</span>--}}
-{{--@enderror--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div class="form-group row">--}}
-{{--<div class="col-md-6 offset-md-4">--}}
-{{--<div class="form-check" align="right" >--}}
-{{--<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
-
-{{--<label class="form-check-label" dir="rtl" for="remember">--}}
-{{--{{ __('مرا به خاطر نگه دار') }}--}}
-{{--</label>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-
-{{--<div class="form-group row mb-0">--}}
-{{--<div class="col-md-8 offset-md-2" align="right" dir="rtl">--}}
-{{--<button type="submit" class="btn btn-primary col-md-3 mr-md-2">--}}
-{{--{{ __('ورود') }}--}}
-{{--</button>--}}
-
-{{--@if (Route::has('password.request'))--}}
-{{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-{{--{{ __('گذر واژه را فراموش کرده اید؟') }}--}}
-{{--</a>--}}
-{{--@endif--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</form>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--</div>--}}
-{{--@endsection--}}
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login Page</title>
-	<!--Made with love by Mutiullah Samim -->
-
-	<!--Bootsrap 4 CDN-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-	<!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
+@section('content')
 	<div class="container">
-		<div class="d-flex justify-content-center h-100">
-			<div class="card" align="right" dir="rtl">
-				<div class="card-header">
-					<h3>ورود</h3>
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header" align="right" style="font-size: 20px;">{{ __('ورود') }}</div>
 
-				</div>
-				<div class="card-body">
-					<form method="POST" action="{{ route('login') }}">
-						@csrf
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-							       value="{{ old('email') }}" required autocomplete="email" autofocus>
+					<div class="card-body">
+						<form method="POST" action="{{ route('login') }}">
+							@csrf
 
-						</div>
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-							       name="password" required autocomplete="current-password">
-						</div>
-						<div class="form-group row ">
-							<div class="col-md-9">
-								<div class="form-check" align="right">
-									<input class="form-check-input" type="checkbox" name="remember"
-									       id="remember" {{ old('remember') ? 'checked' : '' }}>
+							<div class="form-group row" align="right" dir="rtl">
+								<label for="email" class="col-md-2 col-form-label text-md-left"
+								       dir="rtl">{{ __('ایمیل') }}</label>
 
-									<label class="form-check-label pr-3 " dir="rtl" style="color: white" for="remember">
-										{{ __('مرا به خاطر نگه دار') }}
-									</label>
+								<div class="col-md-6">
+									<input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+									       name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+									@error('email')
+									<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+									@enderror
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="ورود" class="btn float-right login_btn">
-						</div>
-					</form>
-				</div>
-				<div class="card-footer">
-					<div class="d-flex justify-content-center links">
-						   حساب کاربری ندارید ؟<a href="{{route('register')}}">   ثبت نام </a></div>
-					<div class="d-flex justify-content-center">
-						<a href="{{ route('password.request') }}">گذر واژه را فراموش کردید ؟</a>
+
+							<div class="form-group row" align="right" dir="rtl">
+								<label for="password" class="col-md-2 col-form-label text-md-left">{{ __('گذر واژه') }}</label>
+
+								<div class="col-md-6">
+									<input id="password" type="password"
+									       class="form-control @error('password') is-invalid @enderror" name="password" required
+									       autocomplete="current-password">
+
+									@error('password')
+									<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+									@enderror
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-6 offset-md-4">
+									<div class="form-check" align="right">
+										<input class="form-check-input" type="checkbox" name="remember"
+										       id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+										<label class="form-check-label" dir="rtl" for="remember">
+											{{ __('مرا به خاطر نگه دار') }}
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row mb-0">
+								<div class="col-md-8 offset-md-2" align="right" dir="rtl">
+									<button type="submit" class="btn btn-primary col-md-3 mr-md-2">
+										{{ __('ورود') }}
+									</button>
+
+									@if (Route::has('password.request'))
+										<a class="btn btn-link" href="{{ route('password.request') }}">
+											{{ __('گذر واژه را فراموش کرده اید؟') }}
+										</a>
+									@endif
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
-<style>
-	@import url('https://fonts.googleapis.com/css?family=Numans');
+@endsection
+{{--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--}}
+{{--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>--}}
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--}}
+{{--<!------ Include the above in your HEAD tag ---------->--}}
 
-	html, body {
-		/*background-image: url('/uploads/1.jpg');*/
-		background-size: cover;
-		background-color: #5a6268;
-		background-repeat: no-repeat;
-		height: 100%;
-		font-family: 'Numans', sans-serif;
-	}
+{{--<!DOCTYPE html>--}}
+{{--<html>--}}
+{{--<head>--}}
+{{--<title>Login Page</title>--}}
+{{--<!--Made with love by Mutiullah Samim -->--}}
 
-	.container {
-		height: 100%;
-		align-content: center;
-	}
+{{--<!--Bootsrap 4 CDN-->--}}
+{{--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"--}}
+{{--integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--}}
 
-	.card {
-		height: 370px;
-		margin-top: auto;
-		margin-bottom: auto;
-		width: 400px;
-		background-color: rgba(0, 0, 0, 0.5) !important;
-	}
+{{--<!--Fontawesome CDN-->--}}
+{{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"--}}
+{{--integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">--}}
 
-	.social_icon span {
-		font-size: 60px;
-		margin-left: 10px;
-		color: #FFC312;
-	}
+{{--<!--Custom styles-->--}}
+{{--<link rel="stylesheet" type="text/css" href="styles.css">--}}
+{{--</head>--}}
+{{--<body>--}}
+{{--<div class="container">--}}
+{{--<div class="d-flex justify-content-center h-100">--}}
+{{--<div class="card" align="right" dir="rtl">--}}
+{{--<div class="card-header">--}}
+{{--<h3>ورود</h3>--}}
 
-	.social_icon span:hover {
-		color: white;
-		cursor: pointer;
-	}
+{{--</div>--}}
+{{--<div class="card-body">--}}
+{{--<form method="POST" action="{{ route('login') }}">--}}
+{{--@csrf--}}
+{{--<div class="input-group form-group">--}}
+{{--<div class="input-group-prepend">--}}
+{{--<span class="input-group-text"><i class="fas fa-user"></i></span>--}}
+{{--</div>--}}
+{{--<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"--}}
+{{--value="{{ old('email') }}" required autocomplete="email" autofocus>--}}
 
-	.card-header h3 {
-		color: white;
-	}
+{{--</div>--}}
+{{--<div class="input-group form-group">--}}
+{{--<div class="input-group-prepend">--}}
+{{--<span class="input-group-text"><i class="fas fa-key"></i></span>--}}
+{{--</div>--}}
+{{--<input id="password" type="password" class="form-control @error('password') is-invalid @enderror"--}}
+{{--name="password" required autocomplete="current-password">--}}
+{{--</div>--}}
+{{--<div class="form-group row ">--}}
+{{--<div class="col-md-9">--}}
+{{--<div class="form-check" align="right">--}}
+{{--<input class="form-check-input" type="checkbox" name="remember"--}}
+{{--id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
 
-	.social_icon {
-		position: absolute;
-		right: 20px;
-		top: -45px;
-	}
+{{--<label class="form-check-label pr-3 " dir="rtl" style="color: white" for="remember">--}}
+{{--{{ __('مرا به خاطر نگه دار') }}--}}
+{{--</label>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="form-group">--}}
+{{--<input type="submit" value="ورود" class="btn float-right login_btn">--}}
+{{--</div>--}}
+{{--</form>--}}
+{{--</div>--}}
+{{--<div class="card-footer">--}}
+{{--<div class="d-flex justify-content-center links">--}}
+{{--حساب کاربری ندارید ؟<a href="{{route('register')}}">   ثبت نام </a></div>--}}
+{{--<div class="d-flex justify-content-center">--}}
+{{--<a href="{{ route('password.request') }}">گذر واژه را فراموش کردید ؟</a>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</body>--}}
+{{--</html>--}}
+{{--<style>--}}
+{{--@import url('https://fonts.googleapis.com/css?family=Numans');--}}
 
-	.input-group-prepend span {
-		width: 50px;
-		background-color: #FFC312;
-		color: black;
-		border: 0 !important;
-	}
+{{--html, body {--}}
+{{--/*background-image: url('/uploads/1.jpg');*/--}}
+{{--background-size: cover;--}}
+{{--background-color: #5a6268;--}}
+{{--background-repeat: no-repeat;--}}
+{{--height: 100%;--}}
+{{--font-family: 'Numans', sans-serif;--}}
+{{--}--}}
 
-	input:focus {
-		outline: 0 0 0 0 !important;
-		box-shadow: 0 0 0 0 !important;
+{{--.container {--}}
+{{--height: 100%;--}}
+{{--align-content: center;--}}
+{{--}--}}
 
-	}
+{{--.card {--}}
+{{--height: 370px;--}}
+{{--margin-top: auto;--}}
+{{--margin-bottom: auto;--}}
+{{--width: 400px;--}}
+{{--background-color: rgba(0, 0, 0, 0.5) !important;--}}
+{{--}--}}
 
-	.remember {
-		color: white;
-	}
+{{--.social_icon span {--}}
+{{--font-size: 60px;--}}
+{{--margin-left: 10px;--}}
+{{--color: #FFC312;--}}
+{{--}--}}
 
-	.remember input {
-		width: 20px;
-		height: 20px;
-		margin-left: 15px;
-		margin-right: 5px;
-	}
+{{--.social_icon span:hover {--}}
+{{--color: white;--}}
+{{--cursor: pointer;--}}
+{{--}--}}
 
-	.login_btn {
-		color: black;
-		background-color: #FFC312;
-		width: 100px;
-	}
+{{--.card-header h3 {--}}
+{{--color: white;--}}
+{{--}--}}
 
-	.login_btn:hover {
-		color: black;
-		background-color: white;
-	}
+{{--.social_icon {--}}
+{{--position: absolute;--}}
+{{--right: 20px;--}}
+{{--top: -45px;--}}
+{{--}--}}
 
-	.links {
-		color: white;
-	}
+{{--.input-group-prepend span {--}}
+{{--width: 50px;--}}
+{{--background-color: #FFC312;--}}
+{{--color: black;--}}
+{{--border: 0 !important;--}}
+{{--}--}}
 
-	.links a {
-		margin-left: 4px;
-	}
-</style>
+{{--input:focus {--}}
+{{--outline: 0 0 0 0 !important;--}}
+{{--box-shadow: 0 0 0 0 !important;--}}
+
+{{--}--}}
+
+{{--.remember {--}}
+{{--color: white;--}}
+{{--}--}}
+
+{{--.remember input {--}}
+{{--width: 20px;--}}
+{{--height: 20px;--}}
+{{--margin-left: 15px;--}}
+{{--margin-right: 5px;--}}
+{{--}--}}
+
+{{--.login_btn {--}}
+{{--color: black;--}}
+{{--background-color: #FFC312;--}}
+{{--width: 100px;--}}
+{{--}--}}
+
+{{--.login_btn:hover {--}}
+{{--color: black;--}}
+{{--background-color: white;--}}
+{{--}--}}
+
+{{--.links {--}}
+{{--color: white;--}}
+{{--}--}}
+
+{{--.links a {--}}
+{{--margin-left: 4px;--}}
+{{--}--}}
+{{--</style>--}}

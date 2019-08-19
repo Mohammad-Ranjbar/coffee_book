@@ -8,7 +8,7 @@
 					<div class="card-header" dir="rtl" align="justify">{{ __('فرم ثبت نام') }}</div>
 
 					<div class="card-body" align="right">
-						<form method="POST" action="{{ route('register') }}">
+						<form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
 							@csrf
 
 							<div class="form-group row" align="right" dir="rtl">
@@ -64,6 +64,15 @@
 								<div class="col-md-6">
 									<input id="password-confirm" type="password" class="form-control" name="password_confirmation"
 									       required autocomplete="new-password">
+								</div>
+							</div>
+
+							<div class="form-group row" align="right" dir="rtl">
+								<label for="avatar"
+								       class="col-md-2 col-form-label text-md-center">{{ __('عکس') }}</label>
+
+								<div class="col-md-6">
+									<input id="avatar" type="file" class="form-control-file" name="avatar" >
 								</div>
 							</div>
 
