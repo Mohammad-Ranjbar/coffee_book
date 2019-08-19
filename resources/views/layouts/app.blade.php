@@ -15,11 +15,12 @@
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+	<link href="https://cdn.rawgit.com/rastikerdar/samim-font/v3.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
 
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: Samim">
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #c9c1ff">
 			<div class="container">
@@ -79,7 +80,7 @@
 			</div>
 		</nav>
 
-		<main class="py-4">
+		<main class="py-4 " >
 			@yield('content')
 		</main>
 	</div>

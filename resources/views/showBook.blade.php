@@ -3,8 +3,20 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-6" align="center">
-				{{--<img src="{{$book->imageAddress.$book->imageName}}" style="height: 300px">--}}{{$book1}}
-				{{$group}}
+				<img src="{{$book->imageAddress.$book->imageName}}">
+				{{--{{$book}}--}}
+				{{--{{$group}}--}}
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-9" align="center" dir="rtl">
+				<li class="list-group-item">{{$book->name}}</li>
+				<li class="list-group-item">{{$book->author}}</li>
+				<li class="list-group-item">{{$book->description}}</li>
+				<li class="list-group-item">{{$book->ISBN}}</li>
+
+
+
 			</div>
 		</div>
 	</div>

@@ -8,12 +8,12 @@
 		</div>
 
 		<div class="row justify-content-center">
-			<div class="col-md-8 border"  style="font-size: 20px;">
+			<div class="col-md-8 border list-group border-dark "  align="center" dir="rtl"  style="font-size: 20px">
 				@forelse($lists as $list )
 					<ul>
 
 						<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
-							<li>{{$list->name}}</li>
+							<li class="list-group-item border-dark ">{{$list->name}}</li>
 						</a>
 					</ul>
 				@empty

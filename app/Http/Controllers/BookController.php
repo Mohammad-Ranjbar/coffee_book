@@ -19,14 +19,14 @@ class BookController extends Controller
 	{
 		$book = new Book;
 		$file = new File();
-
 		if ($request->hasFile('image')) {
 			$image    = $request->file('image');
 			$fileName = time() . '.' . $image->getClientOriginalExtension();
 			$filePath = '/uploads/Books/' . $request->name . '/';
 			$Path     = public_path('/uploads/Books/') . $request->name . '/';
 			$file->makeDirectory($Path, $mode = 0777, true, true);
-			Image::make($image)->insert(public_path('/uploads/Books/logo.png'),  'bottom-right', 10, 10)->resize(300, 300)->save($Path . $fileName);
+			Image::make($image)->insert(public_path('/uploads/Books/logo.png'), 'bottom-right', 10, 10)->resize(300, 300)
+			     ->save($Path . $fileName);
 
 			$book->name         = $request->name;
 			$book->author       = $request->author;
@@ -52,9 +52,10 @@ class BookController extends Controller
 		return back();
 	}
 
-	public function showBookFromGroup(Group $group,$book)
+	public function showBookFromGroup(Group $group, $book)
 	{
-$book1 = Book::find($book);
-		return view('showBook', compact('book1','group'));
+		$book = Book::find($book);
+
+		return view('showBook', compact('book', 'group'));
 	}
 }
