@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Image;
+
 class UserController extends Controller
 {
     public function profile()
     {
-        return view('profile',array('user' => Auth::user()));
+    	$user = auth()->user();
+		$a =  $user->created_at->diffForHumans();
+
+	  $carbon =jdate($a)->ago();
+	   return view('profile',compact('user','carbon'));
     }
 
     public function update_avatar(Request $request)
