@@ -56,6 +56,7 @@ class BookController extends Controller
 	{
 		$book = Book::find($book);
 
+
 		return view('showBook', compact('book', 'group'));
 	}
 }

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-	use \Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
+
     /**
      * The attributes that are mass assignable.
      *
