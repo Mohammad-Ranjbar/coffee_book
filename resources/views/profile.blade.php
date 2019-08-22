@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 	<div class="row justify-content-center">
 		<div class="col-md-10 " style="border: solid">
 			<img src="/uploads/avatars/{{$user->avatar}}"
@@ -14,7 +12,6 @@
 
 		</div>
 	</div>
-
 
 	<div class="row justify-content-center">
 		<div class="col-md-10 mt-3" style="border: solid">
@@ -35,7 +32,7 @@
 			</div>
 		</div>
 	</div>
-
+<script src="{{asset('js/axios.js')}}"></script>
 
 
 @endsection

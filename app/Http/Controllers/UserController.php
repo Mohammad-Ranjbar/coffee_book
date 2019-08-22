@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Image;
-
+use App\Http\GoodReads;
 class UserController extends Controller
 {
     public function profile()
     {
-    	$user = auth()->user();
-		$a =  $user->created_at->diffForHumans();
 
+$d = curl('www.goodreads.com/book/show/50.xml?key=mWah2MYuwQlW1jB5s6pIw');
+    	$user = auth()->user();
+    	dd($d);
+		$a =  $user->created_at->diffForHumans();
 	  $carbon =jdate($a)->ago();
 	   return view('profile',compact('user','carbon'));
     }
