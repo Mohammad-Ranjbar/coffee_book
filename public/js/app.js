@@ -9632,7 +9632,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
- // import 'instantsearch.css/themes/algolia-min.css';
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -71814,7 +71839,55 @@ var render = function() {
             key: "item",
             fn: function(ref) {
               var item = ref.item
-              return [_vm._v("\n\t\t\t" + _vm._s(item.first_name) + "\n\t\t")]
+              return [
+                _c("div", { staticClass: "col-md-4 mb-4 " }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("img", {
+                      staticClass: "card-img-top",
+                      attrs: { src: item.photo }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("h4", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(item.first_name) + _vm._s(item.last_name))
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }),
+                      _c("address", [
+                        _c("strong", [_vm._v(_vm._s(item.company))]),
+                        _c("br"),
+                        _vm._v("\n\t\t\t\t\t\t\t\t\t" + _vm._s(item.address)),
+                        _c("br"),
+                        _vm._v("\n\t\t\t\t\t\t\t\t\t" + _vm._s(item.address_2)),
+                        _c("br"),
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t\t" +
+                            _vm._s(item.city) +
+                            _vm._s(item.state) +
+                            _vm._s(item.zip_code)
+                        ),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("abbr", { attrs: { title: item.phone } }, [
+                          _vm._v(_vm._s(item.phone))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("p"),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { href: "people/" + item.id }
+                        },
+                        [_vm._v("view")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
             }
           }
         ])
