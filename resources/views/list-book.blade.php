@@ -6,7 +6,11 @@
 		<div dir="rtl" align="center">
 			<legend>کتب دسته ی {{$group->name}}</legend>
 		</div>
-
+		@if(session('status'))
+			<div class="alert alert-success">
+				{{session('status')}}
+			</div>
+		@endif
 		<div class="row justify-content-center">
 			<div class="col-md-8 border list-group border-dark "  align="center" dir="rtl"  style="font-size: 20px">
 				@forelse($lists as $list )

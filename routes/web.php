@@ -11,18 +11,24 @@
 |
 */
 
-use App\models\User;
-use App\Notifications\StateUser;
-use App\Person;
 
-Route::get('/', function () {
-	// $user = User::find(1);
-	// auth()->user()->notify(new StateUser($user));
-	return view('welcome');
-});
-Route::get('/test', function () {
-return view('welcome');
-});
+// Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function() {
+// 	Route::get('/', function () {
+// 		// $user = User::find(1);
+// 		// auth()->user()->notify(new StateUser($user));
+// 		// return view('welcome');
+// 		return response('hello world', 200)->header('Content-Type', 'text/plain');
+// 	});
+// });
+
+
+
+
+
+
+// Route::get('/test', function () {
+// return view('welcome');
+// });
 Auth::routes();
 //Forum
 Route::get('/Forum', 'ThreadsController@index')->name('Forum');
