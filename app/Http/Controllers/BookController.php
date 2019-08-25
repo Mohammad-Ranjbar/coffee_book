@@ -49,7 +49,7 @@ class BookController extends Controller
 			]);
 		}
 
-		return back()->with('status','add book done!');
+		return back();
 	}
 
 	public function showBookFromGroup(Group $group, $book)
