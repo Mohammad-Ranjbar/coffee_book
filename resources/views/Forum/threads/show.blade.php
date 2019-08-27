@@ -1,122 +1,124 @@
 @extends('Forum.layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row"  align="rigt" dir="rtl">
-            <div class="col-md-8" >
-                <div class="card">
-                    <div class="card-header">
-	                    <h3 style="float: right">
-		                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-	                    </h3>
+	<div class="container">
+		<div class="row" dir="rtl">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header">
+						<h3 style="float: right">
+							<a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+						</h3>
 
-                        @can('update', $thread)
-                            <form action="{{ $thread->path() }}" method="post" style="float: right;">
-                                @csrf
-                                {{ method_field('DELETE') }}
+						@can('update', $thread)
+							<form action="{{ $thread->path() }}" method="post" style="float: left;">
+								@csrf
+								{{ method_field('DELETE') }}
 
-                                <button type="submit" class="btn btn-danger">حذف نوشتار</button>
-                            </form>
-                        @endcan
-                    </div>
+								<button type="submit" class="btn btn-danger ">حذف نوشتار</button>
+							</form>
+						@endcan
+					</div>
 
-                    <div class="card-body" align="right" dir="rtl">
+					<div class="card-body" align="right" dir="rtl">
 
-                        {{ $thread->body }}
+						{{ $thread->body }}
 
-                    </div>
-                </div>
-                <br>
+					</div>
+				</div>
+				<br>
 
-                @foreach($replies as $reply)
+				@foreach($replies as $reply)
 
-                    <reply inline-template :attributes="{{$reply}}">
+					<reply inline-template :attributes="{{$reply}}">
 
-                        <div class="card" id="reply-{{$reply->id}}">
-                            <div class="card-header">
-                                <h5 style="display: flex; flex: 1; float: left">
-                                    <a href="{{ route('profile', $reply->owner->name) }}">
-                                        {{ $reply->owner->name }}
-                                    </a> said {{ $reply->created_at->diffForHumans() }}
-                                </h5>
+						<div class="card my-2" id="reply-{{$reply->id}}">
+							<div class="card-header">
+								<h5 style="display: flex; flex: 1; float: right">
+									<a href="{{ route('profile',['id'=>$reply->owner->id])}}">
+										{{ $reply->owner->name }}
+									</a>
+								</h5>
+								<h5 style="display: flex; flex: 1; float: left">
+									 said {{ $reply->created_at->diffForHumans() }}
+								</h5>
+								<favorite :reply="{{ $reply }}"></favorite>
 
-                                <favorite :reply="{{ $reply }}"></favorite>
+							</div>
 
-                            </div>
+							<div class="card-body">
+								<div v-if="editing">
+									<div class="form-group">
+										<textarea class="form-control" v-model="body">{{$reply->body}}</textarea>
+									</div>
 
+									<button class="btn btn-primary" @click="update">بروز رسانی</button>
+									<button class="btn btn-warning" @click="editing=false">انصراف</button>
 
-                            <div class="card-body">
-                                <div v-if="editing">
-                                    <div class="form-group">
-                                        <textarea class="form-control" v-model="body">{{$reply->body}}</textarea>
-                                    </div>
+								</div>
+								<div v-else v-text="body"></div>
 
-                                    <button class="btn btn-primary" @click="update">بروز رسانی</button>
-                                    <button class="btn btn-warning" @click="editing=false">انصراف</button>
+							</div>
 
-                                </div>
-                                <div v-else v-text="body"></div>
+							@can('update', $reply)
+								<div class="card-footer">
+									<button class="btn btn-primary" style="float: right" @click="editing = true">ویرایش</button>
+									<button type="submit" class="btn btn-danger" @click="destroy">حذف</button>
+								</div>
+							@endcan
 
+						</div>
+					</reply>
 
-                            </div>
+				@endforeach
+				<br>
+				{{ $replies->links() }}
 
-                            @can('update', $reply)
-                                <div class="card-footer">
-                                    <button class="btn btn-primary" style="float: right" @click="editing = true">ویرایش</button>
-                                    <button type="submit" class="btn btn-danger" @click="destroy">حذف</button>
-                                </div>
-                            @endcan
+				@if(auth()->check())
+					<form action="{{ $thread->path() }}/addReply" method="POST">
+						@csrf
+						<div class="form-group" align="right" dir="rtl">
+							<label for="body">بدنه: </label>
+							<textarea name="body" id="body" class="form-control"></textarea>
+						</div>
 
-                        </div>
-                    </reply>
+						<button type="submit" class="btn btn-primary" style="float: right">تایید</button>
 
-                @endforeach
-                <br>
-                {{ $replies->links() }}
+					</form>
+				@endif
+			</div>
 
-                @if(auth()->check())
-                    <form action="{{ $thread->path() }}/addReply" method="POST">
-                        @csrf
-                        <div class="form-group" align="right" dir="rtl">
-                            <label for="body">بدنه: </label>
-                            <textarea name="body" id="body" class="form-control"></textarea>
-                        </div>
+			<div class="col-md-4">
+				<div class="card card-default">
+					<div class="card-body" align="right" dir="rtl">
+						<p>
+							این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a
+									href="#"> {{ $thread->owner->name }}</a>, و در حال حاضر {{ $thread->replies_count }} باز خورد
+							داشته است.
+						</p>
 
-                        <button type="submit" class="btn btn-primary" style="float: right">تایید</button>
+						@if(!$thread->isSubscribed)
+							<p>
+							<form action="{{ $thread->path() }}/subscription" method="POST">
+								@csrf
+								<button class="btn btn-primary" name="submit">نوشته را دنبال کن</button>
+							</form>
 
-                    </form>
-                @endif
-            </div>
+						@else
+							<form action="{{ $thread->path() }}/subscription" method="POST">
+								@csrf
+								{{method_field('delete')}}
+								<button class="btn btn-warning" name="submit">نوشتار را دنبال نکن</button>
+							</form>
+							</p>
+						@endif
+					</div>
 
-            <div class="col-md-4">
-                <div class="card card-default">
-                    <div class="card-body" align="right" dir="rtl">
-                        <p>
-                            این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a href="#"> {{ $thread->owner->name }}</a>, و در حال حاضر  {{ $thread->replies_count }} باز خورد داشته است.
-                        </p>
+				</div>
 
-                        @if(!$thread->isSubscribed)
-                            <p>
-                            <form action="{{ $thread->path() }}/subscription" method="POST">
-                                @csrf
-                                <button class="btn btn-primary" name="submit">نوشته را دنبال کن</button>
-                            </form>
+			</div>
 
-                        @else
-                            <form action="{{ $thread->path() }}/subscription" method="POST">
-                                @csrf
-                                {{method_field('delete')}}
-                                <button class="btn btn-warning" name="submit">نوشتار را دنبال نکن</button>
-                            </form>
-                            </p>
-                        @endif
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+		</div>
+	</div>
 
 @endsection

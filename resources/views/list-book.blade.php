@@ -6,12 +6,14 @@
 		<div dir="rtl" align="center">
 			<legend>کتب دسته ی {{$group->name}}</legend>
 		</div>
-		@if(session('status'))
-			<div class="alert alert-success alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong>{{session('status')}}</strong>
-			</div>
-		@endif
+
+
+		<script>
+			@if (session('alert'))
+			swal("{{ session('alert') }}");
+			@endif
+		</script>
+
 		<div class="row justify-content-center">
 			<div class="col-md-8 border list-group border-dark "  align="center" dir="rtl"  style="font-size: 20px">
 				@forelse($lists as $list )
@@ -28,7 +30,7 @@
 
 			@if(auth()->check())
 				<div class="col-md-4 border form-group " align="right" dir="rtl">
-					<form action="{{route('add-book',['group' => $group->id])}}" enctype="multipart/form-data" method="post"
+					<form action="{{route('add-book',['group' => $group->id,'user'=>auth()->user()->id])}}" enctype="multipart/form-data" method="post"
 					      role="form">
 						@csrf
 						<legend class="popover-header text-center">اضافه کردن کتاب</legend>

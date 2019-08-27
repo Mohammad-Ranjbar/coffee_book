@@ -34,17 +34,19 @@ class Thread extends Model
 
 	protected $appends = ['IsSubscribed'];
 
-	// protected static function boot()
-	// {
-	// 	static::deleting(function ($thread) {
-	//
-	// 		$thread->replies->each->delete();
-	// 	});
-	//
-	// 	static::created(function ($thread) {
-	// 		$thread->recordActivity('created');
-	// 	});
-	// }
+	protected static function boot()
+	{
+		parent::boot();
+
+		static::deleting(function ($thread) {
+
+			$thread->replies->each->delete();
+		});
+
+		static::created(function ($thread) {
+			$thread->recordActivity('created');
+		});
+	}
 
 	//relations
 	public function replies()

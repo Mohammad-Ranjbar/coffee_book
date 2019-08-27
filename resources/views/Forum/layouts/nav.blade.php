@@ -1,5 +1,5 @@
 
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+	<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #c9c1ff">
 
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -20,7 +20,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/threads">تمام نوشتار ها</a>
                         @if(auth()->check())
-                            <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
+                            <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">نوشتار های من</a>
                         @endif
                         <a class="dropdown-item" href="/threads?popular=1">نوشتار های مطرح</a>
                         <a class="dropdown-item" href="/threads?unanswered=1">نوشتار های بدون جواب</a>
@@ -71,7 +71,7 @@
                                 {{ __('خروج') }}
                             </a>
 
-                            <a href="{{ route('profile', auth()->user()) }}" class="dropdown-item">صفحه ی من</a>
+                            <a href="{{ route('profile') }}" class="dropdown-item">صفحه ی من</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

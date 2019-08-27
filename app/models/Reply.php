@@ -38,7 +38,7 @@ class Reply extends Model
 
 	public function favorites()
 	{
-		return $this->morphMany('App\Models\Favorite', 'favorite');
+		return $this->morphMany('App\models\Favorite', 'favorite');
 	}
 
 	public function favorite()

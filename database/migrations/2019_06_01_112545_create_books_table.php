@@ -16,20 +16,26 @@ class CreateBooksTable extends Migration
 		Schema::create('books', function (Blueprint $table) {
 			$table->Increments('id');
 			$table->unsignedInteger('group_id')->index();
+			$table->unsignedInteger('user_id')->index();
 			$table->string('name');
 			$table->string('author');
 			$table->string('publication');
 			$table->string('description');
 			$table->string('ISBN');
-			$table->string('imageName')->default('image.png');
-			$table->string('imageAddress')->default('/uploads/Books/');
+			$table->string('image')->default('/image.png');
 			$table->timestamps();
 
 			$table->foreign('group_id')
 			      ->references('id')
 			      ->on('groups')
 			      ->onDelete('cascade');
+
+			$table->foreign('user_id')
+			      ->references('id')
+			      ->on('users')
+			      ->onDelete('cascade');
 		});
+
 	}
 
 	/**

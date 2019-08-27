@@ -12,28 +12,21 @@
 */
 
 
-// Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function() {
-// 	Route::get('/', function () {
-// 		// $user = User::find(1);
-// 		// auth()->user()->notify(new StateUser($user));
-// 		// return view('welcome');
-// 		return response('hello world', 200)->header('Content-Type', 'text/plain');
-// 	});
-// });
 
 
 
 
 
 
-// Route::get('/test', function () {
-// return view('welcome');
-// });
+
+Route::get('/', function () {
+return view('welcome');
+});
 Auth::routes();
 //Forum
 Route::get('/Forum', 'ThreadsController@index')->name('Forum');
 
-Route::get('profile', 'UserController@profile');
+Route::get('profile', 'UserController@profile')->name('profile');
 Route::post('profile', 'UserController@update_avatar');
 
 Route::get('/threads', 'ThreadsController@index')->name('threads');
@@ -50,7 +43,7 @@ Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 Route::delete('replies/{reply}', 'RepliesController@destroy');
 Route::patch('replies/{reply}', 'RepliesController@update');
 
-Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
+// Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
@@ -61,7 +54,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/list-group', 'GroupController@show')->name('list-group');
 Route::post('/list-book', 'GroupController@store')->name('post-list');
 Route::get('/listOfBook/{group}', 'GroupController@listOfBook')->name('list-book');
-Route::post('/addBook/{group}', 'BookController@addBookFromGroup')->name('add-book');
+Route::post('/addBook/{group}/{user}', 'BookController@addBookFromGroup')->name('add-book');
 Route::get('/listOfBook/{group}/{book}','BookController@showBookFromGroup')->name('show-book');
 // Route::get('forum','ForumController@show')->name('forum');
 

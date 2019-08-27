@@ -13,8 +13,8 @@ class ThreadPolicy
     /**
      * Determine whether the user can view the thread.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Thread  $thread
+     * @param  \App\models\User  $user
+     * @param  \App\models\Thread  $thread
      * @return mixed
      */
     public function view(User $user, Thread $thread)
@@ -25,7 +25,7 @@ class ThreadPolicy
     /**
      * Determine whether the user can create threads.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -33,23 +33,16 @@ class ThreadPolicy
         //
     }
 
-    /**
-     * Determine whether the user can update the thread.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Thread  $thread
-     * @return mixed
-     */
-    public function update(User $user, Thread $thread)
-    {
-        return $thread->user_id == $user->id;
-    }
+	public function update(User $user, Thread $thread)
+	{
+		return $thread->user_id == $user->id;
+	}
 
     /**
      * Determine whether the user can delete the thread.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Thread  $thread
+     * @param  \App\models\User  $user
+     * @param  \App\models\Thread  $thread
      * @return mixed
      */
     public function delete(User $user, Thread $thread)

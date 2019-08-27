@@ -8,6 +8,11 @@
 				<div class="popover-header" align="center" dir="rtl" style="background-color: #5a6268;color: aliceblue"> دسته
 					بندی
 				</div>
+				<script>
+					@if (session('alert'))
+					swal("{{ session('alert') }}");
+					@endif
+				</script>
 				<div class="list-group" align="center" on dir="rtl"  style="font-size: 20px;">
 					@foreach($lists  as $list)
 						<ul class="list-group-item" >

@@ -29,6 +29,6 @@ class GroupController extends Controller
 				'name' => $request->name,
 		         'description' => $request->description
 	    ]);
-	    return back();
+	    return back()->with('alert','دسته مورد نظر با موفقیت اضافه شد');
 	}
 }

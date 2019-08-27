@@ -2,15 +2,18 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import InstantSearch from 'vue-instantsearch';
-
-Vue.use(InstantSearch);
+// import InstantSearch from 'vue-instantsearch';
+//
+// Vue.use(InstantSearch);
 
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('search', require('./components/Search.vue').default);
+Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('reply', require('./components/Reply.vue'));
+Vue.component('favorite', require('./components/Favorite.vue'));
+Vue.component('user-notifications', require('./components/UserNotifications.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,5 +22,5 @@ Vue.component('search', require('./components/Search.vue').default);
  */
 
 const app = new Vue({
-    el: '#app',
+    el: '#forum',
 });

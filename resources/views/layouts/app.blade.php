@@ -19,6 +19,8 @@
 
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="font-family: Samim">
 	<div id="app">
@@ -58,7 +60,7 @@
 								</a>
 
 								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="/profile">
+									<a class="dropdown-item" href="/profile/"{{auth()->user()->id}}>
 										{{ __('نمایه شخصی') }}
 									</a>
 									<a class="dropdown-item" href="{{ route('logout') }}"
@@ -86,7 +88,7 @@
 			</div>
 		</nav>
 
-		<main class="py-4 ">
+		<main >
 			@yield('content')
 		</main>
 	</div>
