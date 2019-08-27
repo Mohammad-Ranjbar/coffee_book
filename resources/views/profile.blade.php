@@ -36,11 +36,11 @@
 		<div class="row">
 
 			@foreach($user->books as $book)
-				<div class="col-md-4 ">
+				<div class="col-md-4 my-2">
 					<div class="card" align="center">
 						<img class="card-img" src="{{$book->image}}"
 						     style="width: 150px; height: 150px;  border-radius:50%; margin-right: 25px;">
-						<div class="card-body py-2">
+						<div class="card-body ">
 							<ul class="list-group py-2">
 								<li class="list-group-item">{{$book->name}} </li>
 								<li class="list-group-item">{{$book->description}}</li>
@@ -48,7 +48,7 @@
 								<button class="col-md-12 btn btn-warning my-2" data-toggle="modal" data-target="#myModal-{{ $book->id }}">به روز
 									رسانی کتاب
 								</button>
-							<button class="col-md-12 btn btn-danger">حذف کتاب</button>
+							<button class="col-md-12 btn btn-danger" data-toggle="modal" data-target="#myModal-delete-{{ $book->id }}">حذف کتاب</button>
 
 							<!-- Modal -->
 
@@ -59,7 +59,7 @@
 				<div id="myModal-{{ $book->id }}" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 
-						<!-- Modal content-->
+						<!-- Modal content for update-->
 						<div class="modal-content">
 							<div class="modal-header" dir="rtl" align="center">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -96,14 +96,32 @@
 								</form>
 
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
+
 						</div>
 
 					</div>
 				</div>
+				<!-- Modal for delete -->
+				<div class="modal fade" id="myModal-delete-{{ $book->id }}" role="dialog">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header" align="center" dir="rtl">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 
+							</div>
+							<div class="modal-body" align="right" dir="rtl">
+								<p>آیا از حذف کتاب " {{$book->name}} "  اطمینان دارید ؟</p>
+
+								<form id="delete-form" action="{{ route('delete-book',['id' => $book->id]) }}" method="POST">
+									@csrf
+									{{method_field('DELETE')}}
+									<button type="submit" class="btn btn-danger">حذف</button>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			@endforeach
 
 		</div>

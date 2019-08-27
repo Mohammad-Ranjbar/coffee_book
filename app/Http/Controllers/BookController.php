@@ -61,4 +61,11 @@ class BookController extends Controller
 		]);
 		 return back();
 	}
+
+	public function deleteBook($id)
+	{
+	
+	    Book::find($id)->delete();
+	    return back();
+	}
 }
