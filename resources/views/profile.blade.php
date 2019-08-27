@@ -45,14 +45,65 @@
 								<li class="list-group-item">{{$book->name}} </li>
 								<li class="list-group-item">{{$book->description}}</li>
 							</ul>
-							<a href="#">
-								<button class="col-md-12 btn btn-warning my-2">به روز رسانی کتاب</button>
-							</a>
+								<button class="col-md-12 btn btn-warning my-2" data-toggle="modal" data-target="#myModal-{{ $book->id }}">به روز
+									رسانی کتاب
+								</button>
 							<button class="col-md-12 btn btn-danger">حذف کتاب</button>
+
+							<!-- Modal -->
 
 						</div>
 					</div>
 				</div>
+
+				<div id="myModal-{{ $book->id }}" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header" dir="rtl" align="center">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<legend>به روز رسانی کتاب {{$book->name}}</legend>
+							</div>
+							<div class="modal-body" dir="rtl" align="right">
+
+								{{--update Book--}}
+								<form action="{{route('update-Book',['id' => $book->id])}}" method="post" role="form">
+									@csrf
+										{{method_field('PUT')}}
+									<div class="form-group">
+										<label for="name">نام کتاب</label>
+										<input type="text" class="form-control" name="name" id="name" value="{{$book->name}}">
+									</div>
+									<div class="form-group">
+										<label for="author">نویسنده کتاب</label>
+										<input type="text" class="form-control" name="author" id="author" value="{{$book->author}}">
+									</div>
+									<div class="form-group">
+										<label for="publication">انتشارات</label>
+										<input type="text" class="form-control" name="publication" id="publication" value="{{$book->publication}}">
+									</div>
+									<div class="form-group">
+										<label for="ISBN">شابک</label>
+										<input type="text" class="form-control" name="ISBN" id="ISBN" value="{{$book->ISBN}}">
+									</div>
+									<div class="form-group">
+										<label for="description">توضیحات</label>
+										<input type="text" class="form-control" name="description" id="description" value="{{$book->description}}">
+									</div>
+
+									<button type="submit" class="btn btn-primary">تایید</button>
+								</form>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
 			@endforeach
 
 		</div>

@@ -56,6 +56,7 @@ Route::post('/list-book', 'GroupController@store')->name('post-list');
 Route::get('/listOfBook/{group}', 'GroupController@listOfBook')->name('list-book');
 Route::post('/addBook/{group}/{user}', 'BookController@addBookFromGroup')->name('add-book');
 Route::get('/listOfBook/{group}/{book}','BookController@showBookFromGroup')->name('show-book');
+Route::put('/updateBook/{id}','BookController@updateBook')->name('update-Book');
 // Route::get('forum','ForumController@show')->name('forum');
 
 //Route::get('/logout', 'Auth\LoginController@logout ')->name('logout');
