@@ -94,14 +94,14 @@ class ThreadsController extends Controller
 	 */
 	public function show($channel, Thread $thread)
 	{
-		$time   = $thread->created_at->diffForHumans();
-		$carbon = jdate($time)->ago();
+		// $time   = $thread->replies->created_at->diffForHumans();
+		// $carbon = jdate($time)->ago();
 
 		return view('Forum.threads.show')
 			->with([
 				'thread'  => $thread,
 				'replies' => $thread->replies()->paginate(10),
-				'carbon'  => $carbon,
+
 			]);
 	}
 

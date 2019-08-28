@@ -40,7 +40,7 @@
 									{{--</a>--}}
 								</h5>
 								<h5 style="display: flex; flex: 1; float: left">
-									 {{ $carbon }}
+									 {{ jdate($reply->created_at->diffForHumans())->ago()}}
 								</h5>
 								<favorite :reply="{{ $reply }}"></favorite>
 							</div>
@@ -91,7 +91,7 @@
 				<div class="card card-default">
 					<div class="card-body" align="right" dir="rtl">
 						<p>
-							این نوشتار منتشر شده از {{ $carbon }} به وسیله <a
+							این نوشتار منتشر شده از {{ jdate($thread->created_at->diffForHumans())->ago() }} به وسیله <a
 									href="#"> {{ $thread->owner->name }}</a>, و در حال حاضر {{ $thread->replies_count }} باز خورد
 							داشته است.
 						</p>
