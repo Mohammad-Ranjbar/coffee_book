@@ -51,7 +51,7 @@ class BookController extends Controller
 
 	public function updateBook($id, Request $request)
 	{
-		 Book::find($id)->update([
+		Book::find($id)->update([
 			'name'        => $request->name,
 			'author'      => $request->author,
 			'publication' => $request->publication,
@@ -59,13 +59,14 @@ class BookController extends Controller
 			'description' => $request->description,
 
 		]);
-		 return back();
+
+		return back();
 	}
 
 	public function deleteBook($id)
 	{
-	
-	    Book::find($id)->delete();
-	    return back();
+		Book::find($id)->delete();
+
+		return back();
 	}
 }

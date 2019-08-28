@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
-
 	public function __construct()
 	{
 		$this->middleware('auth')->except(['index', 'show']);
@@ -29,13 +28,12 @@ class ThreadsController extends Controller
 
 		if ($channel->exists) {
 			$threads = $channel->threads();
-		}
-		else {
+		} else {
 			$threads = Thread::query();
 		}
 
-		$by = request('by');
-		$popular = request('popular');
+		$by         = request('by');
+		$popular    = request('popular');
 		$unanswered = request('unanswered');
 
 		if ($popular) {
@@ -43,7 +41,7 @@ class ThreadsController extends Controller
 		} elseif ($by) {
 			$username = $by;
 			/** @var User $user */
-			$user = User::where('name', $username)->firstOrFail();
+			$user    = User::where('name', $username)->firstOrFail();
 			$threads = Thread::where('user_id', $user->id);
 			$threads = $threads->latest();
 		} elseif ($unanswered) {
@@ -53,7 +51,8 @@ class ThreadsController extends Controller
 		}
 
 		$threads = $threads->get();
-		return view('Forum.threads.index',compact('threads'));
+
+		return view('Forum.threads.index', compact('threads'));
 	}
 
 	/**
@@ -65,7 +64,7 @@ class ThreadsController extends Controller
 	{
 		$channels = Channel::all();
 
-		return view('Forum.threads.create',compact('channels'));
+		return view('Forum.threads.create', compact('channels'));
 	}
 
 	/**
@@ -82,6 +81,7 @@ class ThreadsController extends Controller
 			'title'      => $request->title,
 			'body'       => $request->body,
 		]);
+
 		return redirect(route('threads'))
 			->with('flash', 'Your thread has been published');
 	}
@@ -94,10 +94,14 @@ class ThreadsController extends Controller
 	 */
 	public function show($channel, Thread $thread)
 	{
+		$time   = $thread->created_at->diffForHumans();
+		$carbon = jdate($time)->ago();
+
 		return view('Forum.threads.show')
 			->with([
 				'thread'  => $thread,
 				'replies' => $thread->replies()->paginate(10),
+				'carbon'  => $carbon,
 			]);
 	}
 
@@ -116,7 +120,7 @@ class ThreadsController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request $request
-	 * @param  \App\Models\Thread       $thread
+	 * @param  \App\Models\Thread $thread
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, Thread $thread)
@@ -124,12 +128,12 @@ class ThreadsController extends Controller
 		//
 	}
 
-
 	public function destroy($channel, Thread $thread)
 	{
 		$this->authorize('update', $thread);
 		$thread->replies()->delete();
 		$thread->delete();
+
 		return redirect('/threads');
 	}
 }

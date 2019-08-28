@@ -2,6 +2,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+
 // import InstantSearch from 'vue-instantsearch';
 //
 // Vue.use(InstantSearch);
@@ -10,10 +12,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('flash', require('./components/Flash.vue'));
-Vue.component('reply', require('./components/Reply.vue'));
-Vue.component('favorite', require('./components/Favorite.vue'));
-Vue.component('user-notifications', require('./components/UserNotifications.vue'));
+Vue.component('flash', require('./components/Flash.vue').default);
+Vue.component('reply', require('./components/Reply.vue').default);
+Vue.component('favorite', require('./components/Favorite.vue').default);
+Vue.component('user-notifications', require('./components/UserNotifications.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

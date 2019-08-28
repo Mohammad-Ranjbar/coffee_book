@@ -6,6 +6,10 @@
     export default {
         name: "Reply",
         props: ['attributes'],
+	    // mounted () {
+		//     // Do something useful with the data in the template
+		//     console.log(this.attributes)
+	    // },
         data() {
             return {
                 editing: false,

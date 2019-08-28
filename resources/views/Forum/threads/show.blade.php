@@ -35,15 +35,14 @@
 						<div class="card my-2" id="reply-{{$reply->id}}">
 							<div class="card-header">
 								<h5 style="display: flex; flex: 1; float: right">
-									<a href="{{ route('profile',['id'=>$reply->owner->id])}}">
+									{{--<a href="{{ route('profile',['id'=>$reply->owner->id])}}">--}}
 										{{ $reply->owner->name }}
-									</a>
+									{{--</a>--}}
 								</h5>
 								<h5 style="display: flex; flex: 1; float: left">
-									 said {{ $reply->created_at->diffForHumans() }}
+									 {{ $carbon }}
 								</h5>
 								<favorite :reply="{{ $reply }}"></favorite>
-
 							</div>
 
 							<div class="card-body">
@@ -92,26 +91,12 @@
 				<div class="card card-default">
 					<div class="card-body" align="right" dir="rtl">
 						<p>
-							این نوشتار منتشر شده در تاریخ : {{ $thread->created_at->diffForHumans() }} به وسیله <a
+							این نوشتار منتشر شده از {{ $carbon }} به وسیله <a
 									href="#"> {{ $thread->owner->name }}</a>, و در حال حاضر {{ $thread->replies_count }} باز خورد
 							داشته است.
 						</p>
 
-						@if(!$thread->isSubscribed)
-							<p>
-							<form action="{{ $thread->path() }}/subscription" method="POST">
-								@csrf
-								<button class="btn btn-primary" name="submit">نوشته را دنبال کن</button>
-							</form>
 
-						@else
-							<form action="{{ $thread->path() }}/subscription" method="POST">
-								@csrf
-								{{method_field('delete')}}
-								<button class="btn btn-warning" name="submit">نوشتار را دنبال نکن</button>
-							</form>
-							</p>
-						@endif
 					</div>
 
 				</div>
