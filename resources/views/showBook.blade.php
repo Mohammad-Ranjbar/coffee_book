@@ -14,9 +14,6 @@
 				<li class="list-group-item">{{$book->author}}</li>
 				<li class="list-group-item">{{$book->description}}</li>
 				<li class="list-group-item">{{$book->ISBN}}</li>
-
-
-
 			</div>
 		</div>
 	</div>

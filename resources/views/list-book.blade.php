@@ -1,73 +1,101 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-		{{--		{{dd($group->name)}}--}}
-		<div dir="rtl" align="center">
-			<legend>کتب دسته ی {{$group->name}}</legend>
-		</div>
-
-
-		<script>
-			@if (session('alert'))
-			swal("{{ session('alert') }}");
-			@endif
-		</script>
-
-		<div class="row justify-content-center">
-			<div class="col-md-8 border list-group border-dark "  align="center" dir="rtl"  style="font-size: 20px">
-				@forelse($lists as $list )
-					<ul>
-
-						<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
-							<li class="list-group-item border-dark ">{{$list->name}}</li>
-						</a>
-					</ul>
-				@empty
-					<p align="center">کتابی در این دسته موجود نیست</p>
-				@endforelse
+	<div class="container py-4">
+		<div class="row align-content-center border-bottom border-dark ">
+			<div class="col-md-4">
+				<button class="btn btn-warning" disabled> اضافه کردن کتاب</button>
 			</div>
 
-			@if(auth()->check())
-				<div class="col-md-4 border form-group " align="right" dir="rtl">
-					<form action="{{route('add-book',['group' => $group->id,'user'=>auth()->user()->id])}}" enctype="multipart/form-data" method="post"
+			<div class="col-md-4 mb-2">
+				<legend>کتب دسته ی {{$group->name}}</legend>
+			</div>
+			@if (auth()->check())
+				<div class="col-md-4 float-right" align="right">
+					<button class="btn btn-success"  data-toggle="modal" data-target="#myModal"> اضافه کردن کتاب</button>
+				</div>
+			@endif
+		</div>
+
+	</div>
+
+	<div class="row justify-content-center mt-4">
+		@foreach($lists as $list )
+
+			<div class="card mx-2">
+				<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
+					<div class="card-header ">
+						<img src="{{$list->image}}" style="height: 200px;width: 200px;border-radius: 50% ">
+					</div>
+				</a>
+				<div class="card-body">
+					<li class="list-group-item">{{$list->name}}</li>
+				</div>
+			</div>
+
+
+		@endforeach
+	</div>
+
+
+
+
+
+	</div>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+
+
+
+
+				<div class="modal-body" align="right" dir="rtl">
+					<form action="{{route('add-book',['group' => $group->id,'user'=>auth()->user()->id])}}"
+					      enctype="multipart/form-data" method="post"
 					      role="form">
 						@csrf
 						<legend class="popover-header text-center">اضافه کردن کتاب</legend>
 
-						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="name">عنوان کتاب</label>
-							<input type="text" class="form-control col-md-8" name="name" id="name" required>
+						<div class="form-group d-flex ">
+							<label class="col-md-2 ml-4" for="name">عنوان </label>
+							<input class="input-group-text" type="text" class="form-control col-md-8" name="name" id="name" required>
 						</div>
 						<div class="form-group d-flex">
 							<label class="col-md-2 ml-4" for="author">نویسنده</label>
-							<input type="text" class="form-control col-md-8" name="author" id="author" required>
+							<input class="input-group-text" type="text" class="form-control col-md-8" name="author" id="author" required>
 						</div>
 						<div class="form-group d-flex">
 							<label class="col-md-2 ml-4" for="publication">ناشر</label>
-							<input type="text" class="form-control col-md-8" name="publication" id="publication" required>
+							<input class="input-group-text" type="text" class="form-control col-md-8" name="publication" id="publication" required>
 						</div>
 						<div class="form-group d-flex">
 							<label class="col-md-2 ml-4" for="ISBN">شابک</label>
-							<input type="text" class="form-control col-md-8" name="ISBN" id="ISBN" required>
+							<input class="input-group-text" type="text" class="form-control col-md-8" name="ISBN" id="ISBN" required>
 						</div>
 						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="description">توضیحات</label>
-							<input type="text" class="form-control col-md-8" name="description" id="description" required>
+							<label class="col-md-2 ml-4" for="description" style="font-size: 13px;">توضیحات</label>
+							<input class="input-group-text" type="text" class="form-control col-md-8" name="description"  id="description" required>
 						</div>
 						<div class="input-group float-right">
 							<label class="col-md-2 ml-4" for="description">عکس</label>
-							<div class="custom-file col-md-8" align="left">
+							<div class="custom-file col-md-8 mb-2" align="left">
 								<input type="file" class="custom-file-input" name="image" id="image">
 								<label class="custom-file-label" for="inputGroupFile01">انتخاب فایل</label>
 							</div>
 						</div>
 
 						<button type="submit" class="btn btn-primary">تایید</button>
+						<button type="button" class=" float-left btn btn-danger" data-dismiss="modal">انصراف</button>
 					</form>
+
 				</div>
+
+			</div>
 		</div>
 	</div>
-	@endif
-
+	<script>
+		@if (session('alert'))
+		swal("{{ session('alert') }}");
+		@endif
+	</script>
 @endsection

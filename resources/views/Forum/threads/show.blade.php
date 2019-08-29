@@ -49,6 +49,7 @@
 								<div v-if="editing">
 									<div class="form-group">
 										<textarea class="form-control" v-model="body">{{$reply->body}}</textarea>
+										{!! mention()->asTextArea('message', old('message'), 'users', 'name') !!}
 									</div>
 
 									<button class="btn btn-primary" @click="update">بروز رسانی</button>
@@ -96,6 +97,21 @@
 							داشته است.
 						</p>
 
+						@if(!$thread->isSubscribed)
+							<p>
+							<form action="{{ $thread->path() }}/subscription" method="POST">
+								@csrf
+								<button class="btn btn-primary" name="submit">Subscribe</button>
+							</form>
+
+						@else
+							<form action="{{ $thread->path() }}/subscription" method="POST">
+								@csrf
+								{{method_field('delete')}}
+								<button class="btn btn-warning" name="submit">UnSubscribe</button>
+							</form>
+							</p>
+						@endif
 
 					</div>
 

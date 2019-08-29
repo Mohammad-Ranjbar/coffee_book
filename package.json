@@ -27,6 +27,7 @@
     "algoliasearch": "^3.33.0",
     "fs": "0.0.1-security",
     "proxify-url": "^1.0.1",
+    "selectize": "^0.12.6",
     "vue-instantsearch": "^2.3.0"
   }
 }

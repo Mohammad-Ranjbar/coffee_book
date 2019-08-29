@@ -12,15 +12,16 @@ class GroupController extends Controller
 {
 	public function show(Group $group)
 	{
+
 		$lists = $group->get();
 		return view('list',compact('lists'));
 	}
 	public function listOfBook(Group $group)
 	{
-
+		$article = Book::with('tagged')->first();
 		$lists = $group->books;
 
-		return view('list-book', compact('lists' , 'group'));
+		return view('list-book', compact('lists' , 'group','article'));
 	}
 
 	public function store(Group $group,GroupListRequest $request)
