@@ -84,7 +84,7 @@ class BookController extends Controller
 
 	public function home()
 	{
-	   $books =  Book::all();
+	   $books =  Book::paginate(6);
 	    return view('welcome',compact('books'));
 	}
 }

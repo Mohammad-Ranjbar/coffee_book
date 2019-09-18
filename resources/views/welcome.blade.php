@@ -45,7 +45,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container " >
+			<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  جدید ترین کتای های اضافه شده</h1>
 		<div class="row">
 			@foreach($books as $book)
 				<div class="col-md-4 my-2">
@@ -66,6 +67,7 @@
 				</div>
 			@endforeach
 		</div>
+		<div >{{$books->links()}}</div>
 	</div>
 
 @endsection
