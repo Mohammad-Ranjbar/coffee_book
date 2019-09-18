@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\models\User;
+use Faker\Provider\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\View\View;
 use Image;
 use App\Http\GoodReads;
 
@@ -34,4 +37,12 @@ class UserController extends Controller
 
 		return back();
 	}
+
+	public function sendUser()
+	{
+	   $user_search = User::all()->get();
+	    return $user_search;
+	}
+
+
 }

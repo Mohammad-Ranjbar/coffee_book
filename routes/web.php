@@ -19,14 +19,12 @@
 
 
 
-Route::get('/', function () {
-return view('welcome');
-});
+Route::get('/', 'BookController@home');
 Auth::routes();
 //Forum
 Route::get('/Forum', 'ThreadsController@index')->name('Forum');
 
-Route::get('profile', 'UserController@profile')->name('profile');
+Route::get('profile', 'UserController@profile')->name('profile')->middleware('auth');
 Route::post('profile', 'UserController@update_avatar');
 
 Route::get('/threads', 'ThreadsController@index')->name('threads');
@@ -61,3 +59,6 @@ Route::delete('/deleteBook/{id}','BookController@deleteBook')->name('delete-book
 // Route::get('forum','ForumController@show')->name('forum');
 
 //Route::get('/logout', 'Auth\LoginController@logout ')->name('logout');
+
+Route::get('/book/vote/{id}/{vote}','BookController@voted')->name('vote-book');
+Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-comment');

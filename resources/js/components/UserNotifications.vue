@@ -2,7 +2,7 @@
     <li class="nav-item dropdown" v-show="notifications.length">
         <a href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button" aria-haspopup="true"
            aria-expanded="false" data-toggle="dropdown">
-            Notifications
+            اعلانات
         </a>
 
 

@@ -3,8 +3,8 @@
 @section('content')
 	<div class="container py-4">
 		<div class="row align-content-center border-bottom border-dark ">
-			<div class="col-md-4">
-				<button class="btn btn-warning" disabled> اضافه کردن کتاب</button>
+			<div class="col-md-4" dir="rtl">
+				<button class="btn btn-warning" disabled> ترتیب بر اساس :</button>
 			</div>
 
 			<div class="col-md-4 mb-2">
@@ -12,17 +12,16 @@
 			</div>
 			@if (auth()->check())
 				<div class="col-md-4 float-right" align="right">
-					<button class="btn btn-success"  data-toggle="modal" data-target="#myModal"> اضافه کردن کتاب</button>
+					<button class="btn btn-success" data-toggle="modal" data-target="#myModal"> اضافه کردن کتاب</button>
 				</div>
 			@endif
 		</div>
-
 	</div>
 
 	<div class="row justify-content-center mt-4">
 		@foreach($lists as $list )
 
-			<div class="card mx-2">
+			<div class="card mx-2 align-items-center">
 				<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
 					<div class="card-header ">
 						<img src="{{$list->image}}" style="height: 200px;width: 200px;border-radius: 50% ">
@@ -31,68 +30,98 @@
 				<div class="card-body">
 					<li class="list-group-item">{{$list->name}}</li>
 				</div>
+				<div class="card-footer">
+					<button type="button" class="btn btn-outline-success btn-sm float-right">
+						<span class="glyphicon glyphicon-star" aria-hidden="true"></span> علاقه مندی
+					</button>
+					@if (auth()->check())
+
+						{{--{{dd( $list->likes->where('user_id',auth()->user()->id)->first()  )}}--}}
+							@if (  $list->likes->where('user_id',auth()->user()->id)->first())
+
+							<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 0])}}">
+								<button type="button" class="btn btn-primary btn-sm float-left mr-1">
+									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
+								</button>
+							</a>
+						@endif
+					@if(! $list->likes->first())
+							<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 1])}}">
+								<button type="button" class="btn btn-outline-primary btn-sm float-left mr-1">
+									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
+								</button>
+							</a>
+						@endif
+
+					@endif
+
+				</div>
+
 			</div>
-
-
 		@endforeach
 	</div>
 
 
 
 
-
-	</div>
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
+	@if (auth()->check())
 
 
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
 
+					<div class="modal-body" align="right" dir="rtl">
+						<form action="{{route('add-book',['group' => $group->id,'user'=>auth()->user()->id])}}"
+						      enctype="multipart/form-data" method="post"
+						      role="form">
+							@csrf
+							<legend class="popover-header text-center">اضافه کردن کتاب</legend>
 
-				<div class="modal-body" align="right" dir="rtl">
-					<form action="{{route('add-book',['group' => $group->id,'user'=>auth()->user()->id])}}"
-					      enctype="multipart/form-data" method="post"
-					      role="form">
-						@csrf
-						<legend class="popover-header text-center">اضافه کردن کتاب</legend>
-
-						<div class="form-group d-flex ">
-							<label class="col-md-2 ml-4" for="name">عنوان </label>
-							<input class="input-group-text" type="text" class="form-control col-md-8" name="name" id="name" required>
-						</div>
-						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="author">نویسنده</label>
-							<input class="input-group-text" type="text" class="form-control col-md-8" name="author" id="author" required>
-						</div>
-						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="publication">ناشر</label>
-							<input class="input-group-text" type="text" class="form-control col-md-8" name="publication" id="publication" required>
-						</div>
-						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="ISBN">شابک</label>
-							<input class="input-group-text" type="text" class="form-control col-md-8" name="ISBN" id="ISBN" required>
-						</div>
-						<div class="form-group d-flex">
-							<label class="col-md-2 ml-4" for="description" style="font-size: 13px;">توضیحات</label>
-							<input class="input-group-text" type="text" class="form-control col-md-8" name="description"  id="description" required>
-						</div>
-						<div class="input-group float-right">
-							<label class="col-md-2 ml-4" for="description">عکس</label>
-							<div class="custom-file col-md-8 mb-2" align="left">
-								<input type="file" class="custom-file-input" name="image" id="image">
-								<label class="custom-file-label" for="inputGroupFile01">انتخاب فایل</label>
+							<div class="form-group d-flex ">
+								<label class="col-md-2 ml-4" for="name">عنوان </label>
+								<input class="input-group-text" type="text" class="form-control col-md-8" name="name" id="name"
+								       required>
 							</div>
-						</div>
+							<div class="form-group d-flex">
+								<label class="col-md-2 ml-4" for="author">نویسنده</label>
+								<input class="input-group-text" type="text" class="form-control col-md-8" name="author"
+								       id="author"
+								       required>
+							</div>
+							<div class="form-group d-flex">
+								<label class="col-md-2 ml-4" for="publication">ناشر</label>
+								<input class="input-group-text" type="text" class="form-control col-md-8" name="publication"
+								       id="publication" required>
+							</div>
+							<div class="form-group d-flex">
+								<label class="col-md-2 ml-4" for="ISBN">شابک</label>
+								<input class="input-group-text" type="text" class="form-control col-md-8" name="ISBN" id="ISBN"
+								       required>
+							</div>
+							<div class="form-group d-flex">
+								<label class="col-md-2 ml-4" for="description" style="font-size: 13px;">توضیحات</label>
+								<input class="input-group-text" type="text" class="form-control col-md-8" name="description"
+								       id="description" required>
+							</div>
+							<div class="input-group float-right">
+								<label class="col-md-2 ml-4" for="description">عکس</label>
+								<div class="custom-file col-md-8 mb-2" align="left">
+									<input type="file" class="custom-file-input" name="image" id="image">
+									<label class="custom-file-label" for="inputGroupFile01">انتخاب فایل</label>
+								</div>
+							</div>
 
-						<button type="submit" class="btn btn-primary">تایید</button>
-						<button type="button" class=" float-left btn btn-danger" data-dismiss="modal">انصراف</button>
-					</form>
+							<button type="submit" class="btn btn-primary">تایید</button>
+							<button type="button" class=" float-left btn btn-danger" data-dismiss="modal">انصراف</button>
+						</form>
+
+					</div>
 
 				</div>
-
 			</div>
 		</div>
-	</div>
+	@endif
 	<script>
 		@if (session('alert'))
 		swal("{{ session('alert') }}");

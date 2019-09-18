@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
 
-        {{$profile_user->name}} replied to
+        {{$profile_user->name}} نظر داد به
         <a href="{{ $activity->subject->thread->path() }}">"{{ $activity->subject->thread->title }}"</a>
 
     </div>
