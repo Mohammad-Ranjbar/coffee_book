@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\Book;
 use App\models\Group;
+use App\models\User;
 use Illuminate\Filesystem\Filesystem as File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -32,7 +33,7 @@ class BookController extends Controller
 			$fileName = '/uploads/Books/' . $request->name . '/' . time() . '.' . $image->getClientOriginalExtension();
 			$Path     = public_path('/uploads/Books/') . $request->name . '/';
 			$file->makeDirectory($Path, $mode = 0777, true, true);
-			Image::make($image)->insert(public_path('/uploads/Books/logo.png'), 'bottom-right', 5, 5)->resize(400, 400)
+			Image::make($image)->insert(public_path('/uploads/Books/logo.png'), 'bottom-right', 1, 1)->resize(400, 400)
 			     ->save(public_path($fileName));
 			$book->image = $fileName;
 		}
@@ -44,6 +45,7 @@ class BookController extends Controller
 
 	public function showBookFromGroup(Group $group, $book)
 	{
+
 		$book = Book::find($book);
 
 		return view('showBook', compact('book', 'group'));
@@ -68,5 +70,21 @@ class BookController extends Controller
 		Book::find($id)->delete();
 
 		return back();
+	}
+	public function voted($id, $vote)
+	{
+		$book  = Book::find($id);
+		$voted = $book->likes()->where('user_id', auth()->user()->id)->first();
+		if (isset($voted->id)) {
+			$voted->update(['like' => $vote]);
+		} else
+			$book->likes()->create(['user_id' => auth()->user()->id, 'like' => $vote]);
+		return back();
+	}
+
+	public function home()
+	{
+	   $books =  Book::all();
+	    return view('welcome',compact('books'));
 	}
 }

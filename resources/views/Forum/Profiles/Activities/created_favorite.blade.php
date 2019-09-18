@@ -1,5 +1,5 @@
 @php $reply_id = $activity->subject->favorite_id;
-$reply = \App\Models\Reply::find($reply_id);
+$reply = \App\models\Reply::find($reply_id);
 @endphp
 
 <div class="card">

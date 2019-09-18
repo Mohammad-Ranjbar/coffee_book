@@ -2,6 +2,7 @@
 
 @section('content')
 	<div class="container">
+
 		<div class="row" dir="rtl">
 			<div class="col-md-8">
 				<div class="card">
@@ -41,6 +42,7 @@
 								</h5>
 								<h5 style="display: flex; flex: 1; float: left">
 									 {{ jdate($reply->created_at->diffForHumans())->ago()}}
+
 								</h5>
 								<favorite :reply="{{ $reply }}"></favorite>
 							</div>
@@ -49,7 +51,7 @@
 								<div v-if="editing">
 									<div class="form-group">
 										<textarea class="form-control" v-model="body">{{$reply->body}}</textarea>
-										{!! mention()->asTextArea('message', old('message'), 'users', 'name') !!}
+
 									</div>
 
 									<button class="btn btn-primary" @click="update">بروز رسانی</button>
@@ -80,6 +82,7 @@
 						<div class="form-group" align="right" dir="rtl">
 							<label for="body">بدنه: </label>
 							<textarea name="body" id="body" class="form-control"></textarea>
+
 						</div>
 
 						<button type="submit" class="btn btn-primary" style="float: right">تایید</button>
