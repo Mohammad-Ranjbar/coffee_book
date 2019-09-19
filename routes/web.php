@@ -13,12 +13,6 @@
 
 
 
-
-
-
-
-
-
 Route::get('/', 'BookController@home');
 Auth::routes();
 //Forum
@@ -63,3 +57,6 @@ Route::delete('/deleteBook/{id}','BookController@deleteBook')->name('delete-book
 Route::get('/book/vote/{id}/{vote}','BookController@voted')->name('vote-book');
 Route::get('/book/no-vote/{id}/','BookController@noVote')->name('no-vote');
 Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-comment');
+
+
+Route::get('/mm','BookController@mostPopularBook');

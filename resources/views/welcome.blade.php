@@ -48,7 +48,7 @@
 	<div class="container " >
 			<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  جدید ترین کتاب های اضافه شده</h1>
 		<div class="row">
-			@foreach($books as $book)
+			@foreach($newsbooks as $book)
 				<div class="col-md-4 my-2">
 					<div class="card">
 						<div class="card-header">
@@ -67,32 +67,33 @@
 				</div>
 			@endforeach
 		</div>
-		<div >{{$books->links()}}</div>
+		<div >{{$newsbooks->links()}}</div>
 	</div>
 
 	<div class="container " >
 		<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  پرطرفدارترین کتاب ها</h1>
 		<div class="row">
-			@foreach($books as $book)
+			@foreach($pops as $pop)
 				<div class="col-md-4 my-2">
 					<div class="card">
 						<div class="card-header">
-							{{$book->name}}
+							{{$pop->name}}
 						</div>
 
 						<div class="card-body">
-							<img src="{{$book->image}}"  style="height: 200px;width: 200px;border-radius: 50% ">
-							<p>{{$book->description}}</p>
+							<img src="{{$pop->image}}"  style="height: 200px;width: 200px;border-radius: 50% ">
+							<p>{{$pop->description}}</p>
 						</div>
 
 						<div class="card-footer">
-							{{jdate($book->created_at)->format('%A, %d %B %y')}}
+							{{jdate($pop->created_at)->format('%A, %d %B %y')}}
+							<p>تعداد ارا : {{$pop->likes()->count()}}</p>
 						</div>
 					</div>
 				</div>
 			@endforeach
 		</div>
-		<div >{{$books->links()}}</div>
+		{{--<div >{{$pops->links()}}</div>--}}
 	</div>
 
 @endsection

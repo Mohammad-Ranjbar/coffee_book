@@ -44,8 +44,8 @@
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
 								</button>
 							</a>
-						@endif
-					@if(! $list->likes->first())
+
+						@else
 							<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 1])}}">
 								<button type="button" class="btn btn-outline-primary btn-sm float-left mr-1">
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
