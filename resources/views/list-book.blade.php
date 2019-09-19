@@ -39,7 +39,7 @@
 						{{--{{dd( $list->likes->where('user_id',auth()->user()->id)->first()  )}}--}}
 							@if (  $list->likes->where('user_id',auth()->user()->id)->first())
 
-							<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 0])}}">
+							<a href="{{route('no-vote',['id'=>$list->id ])}}">
 								<button type="button" class="btn btn-primary btn-sm float-left mr-1">
 									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
 								</button>

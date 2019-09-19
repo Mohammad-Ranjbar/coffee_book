@@ -30,16 +30,16 @@
 				<h6 class="text-uppercase font-weight-bold">لینک های مرتبط</h6>
 				<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 				<p>
-					<a href="https://www.farhang.gov.ir/fa/home">وزارت فرهنگ و ارشاد اسلامی </a>
+					<a href="https://www.farhang.gov.ir/fa/home" target="_blank">وزارت فرهنگ و ارشاد اسلامی </a>
 				</p>
 				<p>
-					<a href="https://arasbaran.farhangsara.ir/">فرهنگ سرای ارسباران</a>
+					<a href="https://arasbaran.farhangsara.ir/" target="_blank">فرهنگ سرای ارسباران</a>
 				</p>
 				<p>
-					<a href="https://farhangi.msrt.ir/fa/news/category/318/%DA%A9%D8%A7%D9%86%D9%88%D9%86-%D9%87%D8%A7%DB%8C-%D9%81%D8%B1%D9%87%D9%86%DA%AF%DB%8C-%D9%87%D9%86%D8%B1%DB%8C">معاونت فرهنگی اجتماعی</a>
+					<a href="https://farhangi.msrt.ir/fa/news/category/318/%DA%A9%D8%A7%D9%86%D9%88%D9%86-%D9%87%D8%A7%DB%8C-%D9%81%D8%B1%D9%87%D9%86%DA%AF%DB%8C-%D9%87%D9%86%D8%B1%DB%8C" target="_blank">معاونت فرهنگی اجتماعی</a>
 				</p>
 				<p>
-					<a href="https://icps.ut.ac.ir/">موسسه دهخدا</a>
+					<a href="https://icps.ut.ac.ir/" target="_blank">موسسه دهخدا</a>
 				</p>
 
 			</div>
@@ -68,7 +68,7 @@
 
 	<!-- Copyright -->
 	<div class="footer-copyright text-center py-3" align="right">©  طراحی و پشتیبانی
-		<a href="https://github.com/Mohammad-Ranjbar"> Mohammad Javad Ranjbar</a>
+		<a href="https://github.com/Mohammad-Ranjbar" target="_blank"> Mohammad Javad Ranjbar</a>
 	</div>
 	<!-- Copyright -->
 

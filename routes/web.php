@@ -61,4 +61,5 @@ Route::delete('/deleteBook/{id}','BookController@deleteBook')->name('delete-book
 //Route::get('/logout', 'Auth\LoginController@logout ')->name('logout');
 
 Route::get('/book/vote/{id}/{vote}','BookController@voted')->name('vote-book');
+Route::get('/book/no-vote/{id}/','BookController@noVote')->name('no-vote');
 Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-comment');

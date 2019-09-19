@@ -87,4 +87,11 @@ class BookController extends Controller
 	   $books =  Book::paginate(6);
 	    return view('welcome',compact('books'));
 	}
+
+	public function noVote($id)
+	{
+	    $book = Book::find($id);
+	    $book->likes()->where('user_id',auth()->user()->id)->delete();
+	    return back();
+	}
 }
