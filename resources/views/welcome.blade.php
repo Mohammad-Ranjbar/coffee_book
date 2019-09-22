@@ -93,7 +93,7 @@
 				</div>
 			@endforeach
 		</div>
-		{{--<div >{{$pops->links()}}</div>--}}
+
 	</div>
 
 @endsection

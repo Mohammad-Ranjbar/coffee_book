@@ -176,8 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 	    Intervention\Image\ImageServiceProvider::class,
 	    UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-	    Unicodeveloper\Mention\MentionServiceProvider::class,
-	    Collective\Html\HtmlServiceProvider::class,
+
+
     ],
 
     /*

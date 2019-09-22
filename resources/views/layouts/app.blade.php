@@ -11,25 +11,39 @@
 
 	<!-- Scripts -->
 	<script src="{{ asset('js/app.js') }}" defer></script>
-	<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
 
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	{{--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">--}}
 	<link href="https://cdn.rawgit.com/rastikerdar/samim-font/v3.1.0/dist/font-face.css" rel="stylesheet" type="text/css"/>
 
+
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<style>
+		.dropdown:hover>.dropdown-menu {
+			display: block;
+		}
+
+		.dropdown>.dropdown-toggle:active {
+			/*Without this, clicking will make it sticky*/
+			pointer-events: none;
+		}
+
+	</style>
+
 </head>
-<body style="font-family: Samim">
+<body >
 	<div id="app">
 		@include ('layouts.nav')
 		<main >
 			@yield('content')
 		</main>
-	</div>
 	@include ('layouts.footer')
+	</div>
 </body>
 </html>

@@ -4,7 +4,16 @@
 	<div class="container py-4">
 		<div class="row align-content-center border-bottom border-dark ">
 			<div class="col-md-4" dir="rtl">
-				<button class="btn btn-warning" disabled> ترتیب بر اساس :</button>
+				<div class="dropdown">
+					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						ترتیب بر اساس
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">جدید ترین</a>
+						<a class="dropdown-item" href="#">پرطرفدارترین</a>
+						<a class="dropdown-item" href="#">پربازدیدترین</a>
+					</div>
+				</div>
 			</div>
 
 			<div class="col-md-4 mb-2">
@@ -17,50 +26,52 @@
 			@endif
 		</div>
 	</div>
+	<div class="container">
+		<div class="row justify-content-center mt-4">
+			@foreach($lists as $list )
 
-	<div class="row justify-content-center mt-4">
-		@foreach($lists as $list )
+				<div class="col-md-3">
+					<div class="card m-2 align-items-center" dir="rtl">
+						<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
+							<div class="card-header ">
+								<img src="{{$list->image}}" style="height: 200px;width: 200px;border-radius: 50% ">
+							</div>
+						</a>
+						<div class="card-body">
+							<li class="list-group-item">{{$list->name}}</li>
+						</div>
+						<div class="card-footer">
+							<button type="button" class="btn btn-outline-success btn-sm float-right">
+								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> علاقه مندی
+							</button>
+							@if (auth()->check())
 
-			<div class="card mx-2 align-items-center">
-				<a href="{{route('show-book',['group'=>$group->id,'book'=>$list->id])}}">
-					<div class="card-header ">
-						<img src="{{$list->image}}" style="height: 200px;width: 200px;border-radius: 50% ">
+								{{--{{dd( $list->likes->where('user_id',auth()->user()->id)->first()  )}}--}}
+								@if (  $list->likes->where('user_id',auth()->user()->id)->first())
+
+									<a href="{{route('no-vote',['id'=>$list->id ])}}">
+										<button type="button" class="btn btn-primary btn-sm float-left mr-1">
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
+										</button>
+									</a>
+
+								@else
+									<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 1])}}">
+										<button type="button" class="btn btn-outline-primary btn-sm float-left mr-1">
+											<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
+										</button>
+									</a>
+								@endif
+
+							@endif
+						</div >
+
+						{{jdate($list->created_at->diffForHumans())->ago()}}
 					</div>
-				</a>
-				<div class="card-body">
-					<li class="list-group-item">{{$list->name}}</li>
 				</div>
-				<div class="card-footer">
-					<button type="button" class="btn btn-outline-success btn-sm float-right">
-						<span class="glyphicon glyphicon-star" aria-hidden="true"></span> علاقه مندی
-					</button>
-					@if (auth()->check())
-
-						{{--{{dd( $list->likes->where('user_id',auth()->user()->id)->first()  )}}--}}
-							@if (  $list->likes->where('user_id',auth()->user()->id)->first())
-
-							<a href="{{route('no-vote',['id'=>$list->id ])}}">
-								<button type="button" class="btn btn-primary btn-sm float-left mr-1">
-									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
-								</button>
-							</a>
-
-						@else
-							<a href="{{route('vote-book',['id'=>$list->id , 'vote' => 1])}}">
-								<button type="button" class="btn btn-outline-primary btn-sm float-left mr-1">
-									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>لایک
-								</button>
-							</a>
-						@endif
-
-					@endif
-
-				</div>
-
-			</div>
-		@endforeach
+			@endforeach
+		</div>
 	</div>
-
 
 
 
@@ -122,9 +133,5 @@
 			</div>
 		</div>
 	@endif
-	<script>
-		@if (session('alert'))
-		swal("{{ session('alert') }}");
-		@endif
-	</script>
+
 @endsection

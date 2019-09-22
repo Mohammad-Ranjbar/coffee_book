@@ -27,9 +27,9 @@
             destroy() {
                 axios.delete('/replies/' + this.attributes.id);
 
-                $(this.$el).fadeOut(300);
+                $(this.$el).fadeOut(900);
 
-                flash('Your Reply has been deleted');
+                flash('پاسخ شما حذف گردید !');
             }
         }
     }

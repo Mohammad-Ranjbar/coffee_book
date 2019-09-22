@@ -18,10 +18,10 @@ class GroupController extends Controller
 	}
 	public function listOfBook(Group $group)
 	{
-		$article = Book::with('tagged')->first();
+
 		$lists = $group->books;
 
-		return view('list-book', compact('lists' , 'group','article'));
+		return view('list-book', compact('lists' , 'group'));
 	}
 
 	public function store(Group $group,GroupListRequest $request)

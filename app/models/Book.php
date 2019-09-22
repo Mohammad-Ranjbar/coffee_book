@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
 
-	use \Conner\Tagging\Taggable;
-
 	protected $fillable = ['name','group_id','user_id','author','ISBN','description','publication','imageName','imageAddress'];
 	protected $appends = ['active'];
     public function group()
