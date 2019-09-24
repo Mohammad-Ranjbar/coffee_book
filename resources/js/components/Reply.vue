@@ -28,7 +28,6 @@
                 axios.delete('/replies/' + this.attributes.id);
 
                 $(this.$el).fadeOut(900);
-
                 flash('پاسخ شما حذف گردید !');
             }
         }

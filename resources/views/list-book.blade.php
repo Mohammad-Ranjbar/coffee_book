@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
+	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
+
 	<div class="container py-4">
 		<div class="row align-content-center border-bottom border-dark ">
 			<div class="col-md-4" dir="rtl">
@@ -11,7 +14,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="#">جدید ترین</a>
 						<a class="dropdown-item" href="#">پرطرفدارترین</a>
-						<a class="dropdown-item" href="#">پربازدیدترین</a>
+						{{--<a class="dropdown-item" href="#" >پربازدیدترین</a>--}}
 					</div>
 				</div>
 			</div>
@@ -28,7 +31,7 @@
 	</div>
 	<div class="container">
 		<div class="row justify-content-center mt-4">
-			@foreach($lists as $list )
+			@foreach($group->books()->withCount('likes')->orderByDesc('likes_count')->get() as $list )
 
 				<div class="col-md-3">
 					<div class="card m-2 align-items-center" dir="rtl">
@@ -46,7 +49,6 @@
 							</button>
 							@if (auth()->check())
 
-								{{--{{dd( $list->likes->where('user_id',auth()->user()->id)->first()  )}}--}}
 								@if (  $list->likes->where('user_id',auth()->user()->id)->first())
 
 									<a href="{{route('no-vote',['id'=>$list->id ])}}">
@@ -67,6 +69,7 @@
 						</div >
 
 						{{jdate($list->created_at->diffForHumans())->ago()}}
+						<p>تعداد ارا : {{$list->likes()->sum('like')}}</p>
 					</div>
 				</div>
 			@endforeach

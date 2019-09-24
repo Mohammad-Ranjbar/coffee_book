@@ -86,7 +86,7 @@ class BookController extends Controller
 	{
 	   $newsbooks =  Book::orderBy('created_at','desc')->paginate(6);
 	   // popular Book
-		$books = Book::all();
+		// $books = Book::all();
 		// $favs = [];
 		// foreach ($books as $book){
 		// 	$favs[]  = $book->likes()->pluck('likeable_id')->first();
