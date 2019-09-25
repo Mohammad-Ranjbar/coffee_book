@@ -104,14 +104,14 @@
 							<p>
 							<form action="{{ $thread->path() }}/subscription" method="POST">
 								@csrf
-								<button class="btn btn-primary" name="submit">Subscribe</button>
+								<button class="btn btn-primary" name="submit">پست را دنبال کن</button>
 							</form>
 
 						@else
 							<form action="{{ $thread->path() }}/subscription" method="POST">
 								@csrf
 								{{method_field('delete')}}
-								<button class="btn btn-warning" name="submit">UnSubscribe</button>
+								<button class="btn btn-warning" name="submit">ایسن پست را دنبال می کنم</button>
 							</form>
 							</p>
 						@endif

@@ -14,7 +14,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?new=1">جدید ترین</a>
 						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?popular=1">پرطرفدارترین</a>
-					
+
 					</div>
 				</div>
 			</div>

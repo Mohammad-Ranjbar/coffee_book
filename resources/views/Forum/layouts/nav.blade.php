@@ -1,7 +1,8 @@
 
-	<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #c9c1ff">
+	{{--<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #c9c1ff">--}}
 
-    <div class="container">
+	<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1 bg-dark " style="font-size: 22px">
+
         <a class="navbar-brand" href="{{ url('/') }}">
             {{'کافه بوک' }}
         </a>
@@ -59,27 +60,52 @@
                     </li>
                 @else
                     <user-notifications user="{{ Auth::user()->name }}"></user-notifications>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
+                    {{--<li class="nav-item dropdown">--}}
+                        {{--<a id="navbarDropdown" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
+                            {{--{{ Auth::user()->name }} <span class="caret"></span>--}}
+                        {{--</a>--}}
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" >
-                                {{ __('خروج') }}
-                            </a>
+                        {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >--}}
+                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
+                               {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();" >--}}
+                                {{--{{ __('خروج') }}--}}
+                            {{--</a>--}}
 
-                            <a href="{{ route('profile') }}" class="dropdown-item">صفحه ی من</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                            {{--<a href="{{ route('profile') }}" class="dropdown-item">صفحه ی من</a>--}}
+                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                                {{--@csrf--}}
+                            {{--</form>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+		            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+			            <li class="nav-item avatar dropdown">
+				            <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+				               aria-haspopup="true" aria-expanded="false">
+					            <img src="/uploads/avatars/{{Auth::user()->avatar}}" style="width: 70px; height: 70px"
+					                 class="rounded-circle z-depth-0"
+					                 alt="avatar image">
+				            </a>
+				            <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
+					            <a class="dropdown-item" href="{{route('profile')}}">پروفایل من</a>
+
+					            <a class="dropdown-item" href="{{ route('logout') }}"
+					               onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+						            {{ __('خروج') }}
+					            </a>
+
+					            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+					                  style="display: none;">
+						            @csrf
+					            </form>
+				            </div>
+			            </li>
+		            </ul>
                 @endguest
             </ul>
         </div>
-    </div>
+
 </nav>
 

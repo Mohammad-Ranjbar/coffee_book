@@ -83,7 +83,7 @@ class ThreadsController extends Controller
 		]);
 
 		return redirect(route('threads'))
-			->with('flash', 'Your thread has been published');
+			->with('flash', 'پست شما انتشار یافت');
 	}
 
 	/**

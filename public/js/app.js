@@ -37979,7 +37979,10 @@ var render = function() {
       staticClass: "alert alert-success alert-dismissible alert-flash",
       attrs: { role: "alert" }
     },
-    [_c("strong", [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")]
+    [
+      _c("strong", [_vm._v("با موفقیت !")]),
+      _vm._v(" " + _vm._s(_vm.body) + "\n")
+    ]
   )
 }
 var staticRenderFns = []

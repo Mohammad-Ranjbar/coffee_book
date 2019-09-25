@@ -1,7 +1,7 @@
 <template>
 
     <div class="alert alert-success alert-dismissible alert-flash" role="alert" v-show="show">
-        <strong>Success!</strong> {{ body }}
+        <strong>با موفقیت !</strong> {{ body }}
     </div>
 </template>
 
