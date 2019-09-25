@@ -25,14 +25,15 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<style>
-		.dropdown:hover>.dropdown-menu {
-			display: block;
-		}
+		/*.dropdown:hover>.dropdown-menu {*/
+			/*display: grid;*/
 
-		.dropdown>.dropdown-toggle:active {
-			/*Without this, clicking will make it sticky*/
-			pointer-events: none;
-		}
+		/*}*/
+
+		/*.dropdown>.dropdown-toggle:active {*/
+			/*!*Without this, clicking will make it sticky*!*/
+			/*pointer-events: none;*/
+		/*}*/
 
 	</style>
 

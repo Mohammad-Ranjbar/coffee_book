@@ -3,7 +3,7 @@
 @section('content')
 	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
 	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
-
+	{{--$group->books()->withCount('likes')->orderByDesc('likes_count')->get()--}}
 	<div class="container py-4">
 		<div class="row align-content-center border-bottom border-dark ">
 			<div class="col-md-4" dir="rtl">
@@ -12,13 +12,13 @@
 						ترتیب بر اساس
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="#">جدید ترین</a>
-						<a class="dropdown-item" href="#">پرطرفدارترین</a>
+						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?new=1">جدید ترین</a>
+						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?popular=1">پرطرفدارترین</a>
 						{{--<a class="dropdown-item" href="#" >پربازدیدترین</a>--}}
 					</div>
 				</div>
 			</div>
-
+			{{--<sort :at="{{$group}}"></sort>--}}
 			<div class="col-md-4 mb-2">
 				<legend>کتب دسته ی {{$group->name}}</legend>
 			</div>
@@ -31,7 +31,8 @@
 	</div>
 	<div class="container">
 		<div class="row justify-content-center mt-4">
-			@foreach($group->books()->withCount('likes')->orderByDesc('likes_count')->get() as $list )
+
+			@foreach($books as $list )
 
 				<div class="col-md-3">
 					<div class="card m-2 align-items-center" dir="rtl">

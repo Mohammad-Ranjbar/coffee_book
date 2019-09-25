@@ -19,9 +19,22 @@ class GroupController extends Controller
 	public function listOfBook(Group $group)
 	{
 
-		$lists = $group->books;
+		// {{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
+		// {{--$group->books()->withCount('likes')->orderByDesc('likes_count')->get()--}}
 
-		return view('list-book', compact('lists' , 'group'));
+		$new         = request('new');
+		$popular    = request('popular');
+		$books = $group->books();
+
+		if ($new) {
+			$books = $group->books()->orderBy('created_at','desc');
+		}
+		elseif ($popular) {
+			$books = $group->books()->withCount('likes')->orderByDesc('likes_count');
+		}
+		$books = $books->get();
+
+		return view('list-book', compact( 'group','books'));
 	}
 
 	public function store(Group $group,GroupListRequest $request)
