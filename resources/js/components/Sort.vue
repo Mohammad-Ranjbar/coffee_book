@@ -6,9 +6,9 @@
 				ترتیب بر اساس
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="/listOfBook/{{$group->id}}?new=1">جدید ترین</a>
-				<a class="dropdown-item" href="/listOfBook/{{$group->id}}?popular=1">پرطرفدارترین</a>
-				{{--<a class="dropdown-item" href="#">پربازدیدترین</a>--}}
+				<a class="dropdown-item" @click="newest">جدید ترین</a>
+				<a class="dropdown-item" @click="popular">پرطرفدارترین</a>
+
 			</div>
 		</div>
 	</div>
@@ -18,12 +18,21 @@
 	export default {
 		name: 'Sort',
 		props: ['at'],
+		data() {
+			return {
+				'books' : []
+			};
+		},
 		methods: {
-			sort(by) {
-				axios.get('/replies/' + this.at.id +by);
+			newest() {
+				axios.get('/listOfBook/' + this.at.id + '/?new=1').then(res =>
+					this.books = res.data )
 
 			},
+			popular() {
+				axios.get('/listOfBook/' + this.at.id + '/?popular=1');
 
+			},
 		},
 	};
 </script>

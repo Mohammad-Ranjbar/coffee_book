@@ -14,11 +14,12 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?new=1">جدید ترین</a>
 						<a class="dropdown-item" href="/listOfBook/{{$group->id}}?popular=1">پرطرفدارترین</a>
-						{{--<a class="dropdown-item" href="#" >پربازدیدترین</a>--}}
+					
 					</div>
 				</div>
 			</div>
-			{{--<sort :at="{{$group}}"></sort>--}}
+			{{--<sort  :at="{{$group}}"></sort>--}}
+
 			<div class="col-md-4 mb-2">
 				<legend>کتب دسته ی {{$group->name}}</legend>
 			</div>
@@ -29,6 +30,7 @@
 			@endif
 		</div>
 	</div>
+
 	<div class="container">
 		<div class="row justify-content-center mt-4">
 

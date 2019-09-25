@@ -1874,9 +1874,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Sort',
   props: ['at'],
+  data: function data() {
+    return {
+      'books': []
+    };
+  },
   methods: {
-    sort: function sort(by) {
-      axios.get('/replies/' + this.at.id + by);
+    newest: function newest() {
+      var _this = this;
+
+      axios.get('/listOfBook/' + this.at.id + '/?new=1').then(function (res) {
+        return _this.books = res.data;
+      });
+    },
+    popular: function popular() {
+      axios.get('/listOfBook/' + this.at.id + '/?popular=1');
     }
   }
 });
@@ -38036,8 +38048,50 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-4", attrs: { dir: "rtl" } }, [
+    _c("div", { staticClass: "dropdown" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-warning dropdown-toggle",
+          attrs: {
+            type: "button",
+            id: "dropdownMenuButton",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        },
+        [_vm._v("\n\t\t\tترتیب بر اساس\n\t\t")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu",
+          attrs: { "aria-labelledby": "dropdownMenuButton" }
+        },
+        [
+          _c("a", { staticClass: "dropdown-item", on: { click: _vm.newest } }, [
+            _vm._v("جدید ترین")
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "dropdown-item", on: { click: _vm.popular } },
+            [_vm._v("پرطرفدارترین")]
+          )
+        ]
+      )
+    ])
+  ])
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 
