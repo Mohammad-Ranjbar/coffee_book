@@ -14,6 +14,7 @@
 
 
 Route::get('/', 'BookController@home');
+Route::get('/ajax/books/', 'BookController@home');
 Auth::routes();
 //Forum
 Route::get('/Forum', 'ThreadsController@index')->name('Forum');
@@ -59,4 +60,4 @@ Route::get('/book/no-vote/{id}/','BookController@noVote')->name('no-vote');
 Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-comment');
 
 
-Route::get('/mm','BookController@mostPopularBook');
+Route::post('/book/{book}/cm/','CommentController@commentBook')->name('cm-book');

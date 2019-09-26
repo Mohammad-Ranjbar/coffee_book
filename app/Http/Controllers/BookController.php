@@ -71,6 +71,7 @@ class BookController extends Controller
 
 		return back();
 	}
+
 	public function voted($id, $vote)
 	{
 		$book  = Book::find($id);
@@ -79,40 +80,26 @@ class BookController extends Controller
 			$voted->update(['like' => $vote]);
 		} else
 			$book->likes()->create(['user_id' => auth()->user()->id, 'like' => $vote]);
+
 		return back();
 	}
 
 	public function home()
 	{
-	   $newsbooks =  Book::orderBy('created_at','desc')->paginate(6);
-	   // popular Book
-		// $books = Book::all();
-		// $favs = [];
-		// foreach ($books as $book){
-		// 	$favs[]  = $book->likes()->pluck('likeable_id')->first();
-		// }
-		// $pops = Book::whereIn('id',$favs)->withCount('likes')->orderByDesc('likes_count')->get();
-$pops = Book::withCount('likes')->orderByDesc('likes_count')->take(6)->get();
-		// dd($pops);
+		$newsbooks = Book::orderBy('created_at', 'desc')->paginate(6);
 
-	    return view('welcome',compact('newsbooks','pops'));
+		$pops = Book::withCount('likes')->orderByDesc('likes_count')->take(6)->get();
+
+		return view('welcome', compact('newsbooks', 'pops'));
 	}
 
 	public function noVote($id)
 	{
-	    $book = Book::find($id);
-	    $book->likes()->where('user_id',auth()->user()->id)->delete();
-	    return back();
+		$book = Book::find($id);
+		$book->likes()->where('user_id', auth()->user()->id)->delete();
+
+		return back();
 	}
 
-	// public function mostPopularBook()
-	// {
-	// 	$books = Book::all();
-	// 	$favs = [];
-	// 	foreach ($books as $book){
-	// 		 $favs[]  = $book->likes()->pluck('likeable_id')->first();
-	// 	}
-	// 	$pops = Book::find($favs);
-	// 	dd($pops);
-	// }
+
 }

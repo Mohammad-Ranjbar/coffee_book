@@ -52,5 +52,8 @@ public function books()
 {
     return $this->hasMany(Book::class);
 }
-
+public function comments()
+{
+    return $this->hasMany('App\models\Comment');
+}
 }

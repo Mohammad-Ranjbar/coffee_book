@@ -12,13 +12,23 @@ class Comment extends Model
 	{
 		return $this->morphMany('App\models\Like', 'likeable');
 	}
-	public function getActiveAttribute()
+
+	public function book()
 	{
-		$like = $this->likes()->where('user_id', auth()->user()->id)->first();
-		if (isset($like->id)) {
-			return $like->like;
-		}
-		else
-			return 0;
+	    return $this->belongsTo('App\models\Book');
 	}
+
+	public function user()
+	{
+	    return $this->belongsTo('App\models\User');
+	}
+	// public function getActiveAttribute()
+	// {
+	// 	$like = $this->likes()->where('user_id', auth()->user()->id)->first();
+	// 	if (isset($like->id)) {
+	// 		return $like->like;
+	// 	}
+	// 	else
+	// 		return 0;
+	// }
 }

@@ -23,6 +23,12 @@ class Book extends Model
 	{
 		return $this->morphMany('App\models\Like', 'likeable');
 	}
+
+	public function comments()
+	{
+	    return $this->hasMany('App\models\Comment');
+	}
+
 	public function getActiveAttribute()
 	{
 		$like = $this->likes()->where('user_id', auth()->user()->id)->first();
