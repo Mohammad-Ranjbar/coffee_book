@@ -14,7 +14,11 @@
                             <article>
                                 <div class="level" align="right" dir="rtl" style="display: flex; align-items: center;">
 
-                                    <h4 style="flex: 1"> <a href="{{ route('profile', $thread->owner->name) }}">{{ $thread->owner->name }}</a> عنوان نوشتار :
+                                    <h4 style="flex: 1">
+{{--                                        <a href="{{ route('profile', $thread->owner->name) }}">--}}
+                                            {{ $thread->owner->name }}
+{{--                                        </a>--}}
+                                        عنوان نوشتار :
                                         <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                     </h4>
 

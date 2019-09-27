@@ -34,7 +34,7 @@
 	<div class="container">
 		<div class="row justify-content-center mt-4">
 
-			@foreach($books as $list )
+			@forelse($books as $list )
 
 				<div class="col-md-3">
 					<div class="card m-2 align-items-center" dir="rtl">
@@ -75,7 +75,11 @@
 						<p>تعداد ارا : {{$list->likes()->sum('like')}}</p>
 					</div>
 				</div>
-			@endforeach
+                @empty
+                    <h1 class="my-5 py-5">متاسفانه کتابی در این دسته موجود نیست</h1>
+
+
+            @endforelse
 		</div>
 	</div>
 

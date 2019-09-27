@@ -33,8 +33,10 @@ class BookController extends Controller
 			$fileName = '/uploads/Books/' . $request->name . '/' . time() . '.' . $image->getClientOriginalExtension();
 			$Path     = public_path('/uploads/Books/') . $request->name . '/';
 			$file->makeDirectory($Path, $mode = 0777, true, true);
-			Image::make($image)->insert(public_path('/uploads/Books/logo.png'), 'bottom-right', 1, 1)->resize(400, 400)
-			     ->save(public_path($fileName));
+			//with water mark
+			// Image::make($image)->insert(public_path('/uploads/Books/logo.png'), 'bottom-right', 1, 1)->resize(400, 400)
+			//      ->save(public_path($fileName));
+            Image::make($image)->resize(400, 400)->save(public_path($fileName));
 			$book->image = $fileName;
 		}
 		$book->user_id = $user;

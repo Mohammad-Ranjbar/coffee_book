@@ -2,51 +2,70 @@
 
 @section('content')
 
-	<div class="container">
+    <div class="container">
+        @if (auth()->check())
+            <br>
+            <button class="btn btn-success float-right" data-toggle="modal" data-target="#addList">اضافه کردن دسته</button>
+            <br><br><br><br><br><br>
+        @endif
 
-		{{--<div class="row ">--}}
-			{{--<div class="col-md-4">--}}
-				<div class="popover-header" align="center" dir="rtl" style="background-color: #5a6268;color: aliceblue">اضافه کردن
-					دسته
-				</div>
-				<div align="right" dir="rtl">
-					<form action="{{route('post-list')}}" method="post" role="form">
-						@csrf
-						<div class="form-group">
-							<label for="name">نام دسته</label>
-							<input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
-						</div>
-						<div class="form-group">
-							<label for="description">توضیحات دسته</label>
-							<input type="text" class="form-control" name="description" id="description"
-							       value="{{old('description')}}">
-						</div>
-						<button type="submit" class="btn btn-primary col-md-12">تایید</button>
+    <!-- Modal -->
+        <div class="modal fade" id="addList" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title ">اضافه کردن دسته</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-					</form>
-				</div>
-			{{--</div>--}}
-		{{--</div>--}}
-		<div class="row justify-content-center ">
-			<div class="col-md-7">
-				<div class="popover-header" align="center" dir="rtl" style="background-color: #5a6268;color: aliceblue"> دسته
-					بندی
-				</div>
+                        <div align="right" dir="rtl">
+                            <form action="{{route('post-list')}}" method="post" role="form">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="name">نام دسته</label>
+                                    <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">توضیحات دسته</label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                           value="{{old('description')}}">
+                                </div>
+                                <button type="submit" class="btn btn-primary col-md-12">تایید</button>
 
-				<div class="list-group" align="center" on dir="rtl" style="font-size: 20px;">
-					@foreach($lists  as $list)
-						<ul class="list-group-item">
-							<li class="list-group-item "><a data-toggle="tooltip" data-placement="right"
-							                                title="{{$list->description}}"
-							                                href="{{route('list-book',['group' => $list->id])}}">{{$list->name}}</a>
-							</li>
-						</ul>
-					@endforeach
+                            </form>
+                        </div>
+                    </div>
 
-				</div>
+                </div>
+            </div>
+        </div>
 
-			</div>
-		</div>
-	</div>
+        <h1 align="center">دسته بندی کتب</h1>
+        <br>
+        <div class="row ">
+            @foreach($lists  as $list)
+                <div class="col-md-4 text-center">
+
+                    <div class="card mb-4">
+
+                        <div class="card-header">
+                            <a href="{{route('list-book',['group' => $list->id])}}">{{$list->name}}</a>
+                        </div>
+
+                        <div class="card-body">
+                            {{$list->description}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            @endforeach
+
+        </div>
+    </div>
 
 @endsection
