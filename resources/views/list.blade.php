@@ -6,7 +6,7 @@
         @if (auth()->check())
             <br>
             <button class="btn btn-success float-right" data-toggle="modal" data-target="#addList">اضافه کردن دسته</button>
-            <br><br><br><br><br><br>
+            <br><br>
         @endif
 
     <!-- Modal -->
@@ -51,14 +51,14 @@
 
                     <div class="card mb-4">
 
-                        <div class="card-header">
-                            <a href="{{route('list-book',['group' => $list->id])}}">{{$list->name}}</a>
+                        <div >
+                            <a href="{{route('list-book',['group' => $list->id])}}"><button class="btn btn-outline-success col-md-12" style="font-size: 22px ;">{{$list->name}}</button></a>
                         </div>
 
                         <div class="card-body">
-                            {{$list->description}}
+                            <small><b>{{$list->description}}</b></small>
                         </div>
-
+                    <div class="card-footer">تعداد کتاب : {{$list->books->count()}}</div>
                     </div>
 
                 </div>
