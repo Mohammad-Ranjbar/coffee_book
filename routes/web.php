@@ -11,7 +11,9 @@
 |
 */
 
-
+Route::get('/ts', function (){
+    return view('login');
+});
 
 Route::get('/', 'BookController@home');
 Route::get('/ajax/books/', 'BookController@home');

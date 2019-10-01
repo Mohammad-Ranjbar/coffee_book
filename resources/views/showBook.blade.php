@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-
+{{--    <nav aria-label="breadcrumb" dir="rtl" >--}}
+        <ol class="breadcrumb" dir="rtl" style="font-size: 20px">
+            <li class="breadcrumb-item"><a href="/"> خانه </a></li>
+            <li class="breadcrumb-item"><a href="{{url('/listOfBook/'.$book->group->id)}}"> {{$book->group->name}} </a></li>
+            <li class="breadcrumb-item active" aria-current="page">  {{$book->name}}  </li>
+        </ol>
+{{--    </nav>--}}
 	@if (session('success'))
 
         <script>

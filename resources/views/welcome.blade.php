@@ -49,14 +49,15 @@
 			<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  جدید ترین کتاب های اضافه شده</h1>
 		<div class="row">
 			@foreach($newsbooks as $book)
-				<div class="col-md-4 my-2" id="books">
+				<div class="col-md-4 my-2"  >
 					<div class="card" >
 						<div class="card-header">
 							{{$book->name}}
 						</div>
-
 						<div class="card-body" >
+                        <a href="{{route('show-book',['group'=>$book->group->id,'book'=>$book->id])}}">
 							<img src="{{$book->image}}"  style="height: 200px;width: 200px;border-radius: 50% ">
+                        </a>
 							<p>{{$book->description}}</p>
 						</div>
 
@@ -95,6 +96,7 @@
 		</div>
 
 	</div>
+
     <script>
 		$(document).on('click', '.pagination a', function (e) {
 			e.preventDefault();

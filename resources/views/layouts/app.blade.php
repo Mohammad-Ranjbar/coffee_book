@@ -26,12 +26,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 </head>
-<body>
+<body style="font-size: 18px">
     <div id="app">
         @include ('layouts.nav')
-        <main>
+
+        <main >
             @yield('content')
         </main>
+
         @include ('layouts.footer')
     </div>
 
