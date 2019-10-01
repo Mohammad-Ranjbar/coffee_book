@@ -63,3 +63,7 @@ Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-co
 
 
 Route::post('/book/{book}/cm/','CommentController@commentBook')->name('cm-book');
+Route::get('/cm/{id}','CommentController@deleteComment')->name('delete-comment');
+Route::get('/cm/like/{id}','CommentController@likeComment')->name('like-comment');
+Route::get('/cm/unlike/{id}','CommentController@unlikeComment')->name('unlike-comment');
+
