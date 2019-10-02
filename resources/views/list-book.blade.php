@@ -43,14 +43,17 @@
 								<img src="{{$list->image}}" style="height: 200px;width: 200px;border-radius: 50% ">
 							</div>
 						</a>
-						<div class="card-body">
+						<div class="card-body" align="justify">
 							<li class="list-group-item">{{$list->name}}</li>
 						</div>
+                            @if (auth()->check())
 						<div class="card-footer">
+
 							<button type="button" class="btn btn-outline-success btn-sm float-right">
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span> علاقه مندی
 							</button>
-							@if (auth()->check())
+{{--                            @endif--}}
+{{--							@if (auth()->check())--}}
 
 								@if (  $list->likes->where('user_id',auth()->user()->id)->first())
 
@@ -68,8 +71,8 @@
 									</a>
 								@endif
 
-							@endif
 						</div >
+							@endif
 
 						{{jdate($list->created_at->diffForHumans())->ago()}}
 						<p>تعداد ارا : {{$list->likes()->sum('like')}}</p>
