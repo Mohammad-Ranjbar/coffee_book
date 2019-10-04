@@ -47,7 +47,7 @@
 	</div>
 	<div class="container " >
 			<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  جدید ترین کتاب های اضافه شده</h1>
-		<div class="row">
+		<div class="row" align="center">
 			@foreach($newsbooks as $book)
 				<div class="col-md-4 my-2"  >
 					<div class="card" >
@@ -58,7 +58,7 @@
                         <a href="{{route('show-book',['group'=>$book->group->id,'book'=>$book->id])}}">
 							<img src="{{$book->image}}"  style="height: 200px;width: 200px;border-radius: 50% ">
                         </a>
-							<p>{{$book->description}}</p>
+
 						</div>
 
 						<div class="card-footer">
@@ -73,7 +73,7 @@
 
 	<div class="container " >
 		<h1 class="header border-bottom border-dark mt-3" align="justify" dir="rtl">  پرطرفدارترین کتاب ها</h1>
-		<div class="row">
+		<div class="row " align="center">
 			@foreach($pops as $pop)
 				<div class="col-md-4 my-2">
 					<div class="content">
@@ -83,7 +83,7 @@
 
 						<div class="card-body">
 							<img src="{{$pop->image}}"  style="height: 200px;width: 200px;border-radius: 50% ">
-							<p>{{$pop->description}}</p>
+
 						</div>
 
 						<div class="card-footer">

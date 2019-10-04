@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
-	{{--{{dd($group->books()->orderBy('created_at','desc')->get())}}--}}
-	{{--$group->books()->withCount('likes')->orderByDesc('likes_count')->get()--}}
+
 	<div class="container py-4">
 		<div class="row align-content-center border-bottom border-dark ">
 			<div class="col-md-4" dir="rtl">
@@ -18,7 +16,6 @@
 					</div>
 				</div>
 			</div>
-			{{--<sort  :at="{{$group}}"></sort>--}}
 
 			<div class="col-md-4 mb-2">
 				<legend>کتب دسته ی {{$group->name}}</legend>

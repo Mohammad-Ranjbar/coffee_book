@@ -35,6 +35,9 @@
             </div>
         </div>
         <h1 align="center"> نظرات</h1>
+        @if (! auth()->check())
+            <p class="float-right">برای ثبت نظر لطفا وارد حساب کاربری شوید </p>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8" dir="rtl" align="justify">
 
