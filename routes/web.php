@@ -15,6 +15,10 @@ Route::get('/ts', function (){
     return view('login');
 });
 
+Route::get('/chat', function (){
+    return view('chat');
+});
+
 Route::get('/', 'BookController@home');
 Route::get('/ajax/books/', 'BookController@home');
 Auth::routes();
