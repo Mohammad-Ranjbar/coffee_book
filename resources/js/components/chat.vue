@@ -5,13 +5,19 @@
                 <div class="card-header">پیام ها</div>
                 <div class="card-body p-0">
                     <ul class="list-unstyled" style="height: 300px; overflow-y: scroll">
-                        <li class="p-2">
-                            <strong>محمد جواد :</strong>
-                            سلام
+                        <li class="p-2" v-for="(message ,index) in messages" :key="index">
+                            <strong>{{message.user.name}} :</strong>
+                            {{message.message}}
                         </li>
                     </ul>
                 </div>
-                <input type="text" name="message" placeholder="پیام خود را وارد کنید ..." class="form-control">
+                <input
+                    @keyup.enter="sendMessage"
+                    v-model="newMessage"
+                    type="text"
+                    name="message"
+                    placeholder="پیام خود را وارد کنید ..."
+                    class="form-control">
             </div>
             <span class="text-muted">محمد در حال تایپ ...</span>
         </div>
@@ -21,8 +27,8 @@
                 <div class="crad-header">کاربران آنلاین</div>
                 <div class="card-body">
                     <ul>
-                        <li class="py-2">
-                            محمد جواد
+                        <li class="py-2" v-for="(user , index) in users" :key="index">
+                           {{user.name}}
                         </li>
                     </ul>
                 </div>
@@ -34,7 +40,48 @@
 
 <script>
 	export default {
-		name: 'chat',
+		props: ['user'],
+		data() {
+			return {
+				messages: [],
+				newMessage: '',
+				users: [],
+			};
+		},
+		created() {
+
+			this.fetchMessages();
+			Echo.join('chat')
+                .here( user => {
+                	this.users = user;
+                })
+                .joining(user => {
+                	this.users.push(user);
+                })
+                .leaving( user => {
+                	this.users = this.users.filter(u => u.id != user.id);
+                })
+				.listen('MessageSent', (event) => {
+					this.messages.push(event.message);
+				});
+		},
+		methods: {
+			fetchMessages() {
+				axios.get('messages').then(response => {
+					this.messages = response.data;
+					console.log(this.messages[1].message);
+				});
+			},
+			sendMessage() {
+				this.messages.push({
+					user: this.user,
+					message: this.newMessage,
+				});
+				axios.post('messages', { message: this.newMessage });
+				this.newMessage = '';
+			},
+		},
+
 	};
 </script>
 

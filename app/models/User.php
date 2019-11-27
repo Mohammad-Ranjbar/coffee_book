@@ -2,7 +2,6 @@
 
 namespace App\models;
 
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,6 +59,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\models\Comment');
     }
+
     public function messages()
     {
         return $this->hasMany(Message::class);

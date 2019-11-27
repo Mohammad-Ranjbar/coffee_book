@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/ts', function (){
+Route::get('/ts', function () {
     return view('login');
 });
 
-Route::get('/chat', function (){
-    return view('chat');
-});
+Route::get('/chat', 'MessageController@index');
+Route::get('/messages', 'MessageController@fetchMessages');
+Route::post('/messages', 'MessageController@sendMessages');
 
 Route::get('/', 'BookController@home');
 Route::get('/ajax/books/', 'BookController@home');
@@ -54,20 +54,19 @@ Route::get('/list-group', 'GroupController@show')->name('list-group');
 Route::post('/list-book', 'GroupController@store')->name('post-list');
 Route::get('/listOfBook/{group}', 'GroupController@listOfBook')->name('list-book');
 Route::post('/addBook/{group}/{user}', 'BookController@addBookFromGroup')->name('add-book');
-Route::get('/listOfBook/{group}/{book}','BookController@showBookFromGroup')->name('show-book');
-Route::put('/updateBook/{id}','BookController@updateBook')->name('update-Book');
-Route::delete('/deleteBook/{id}','BookController@deleteBook')->name('delete-book');
+Route::get('/listOfBook/{group}/{book}', 'BookController@showBookFromGroup')->name('show-book');
+Route::put('/updateBook/{id}', 'BookController@updateBook')->name('update-Book');
+Route::delete('/deleteBook/{id}', 'BookController@deleteBook')->name('delete-book');
 // Route::get('forum','ForumController@show')->name('forum');
 
 //Route::get('/logout', 'Auth\LoginController@logout ')->name('logout');
 
-Route::get('/book/vote/{id}/{vote}','BookController@voted')->name('vote-book');
-Route::get('/book/no-vote/{id}/','BookController@noVote')->name('no-vote');
-Route::get('/comment/vote/{id}/{vote}','CommentController@voted')->name('vote-comment');
+Route::get('/book/vote/{id}/{vote}', 'BookController@voted')->name('vote-book');
+Route::get('/book/no-vote/{id}/', 'BookController@noVote')->name('no-vote');
+Route::get('/comment/vote/{id}/{vote}', 'CommentController@voted')->name('vote-comment');
 
-
-Route::post('/book/{book}/cm/','CommentController@commentBook')->name('cm-book');
-Route::get('/cm/{id}','CommentController@deleteComment')->name('delete-comment');
-Route::get('/cm/like/{id}','CommentController@likeComment')->name('like-comment');
-Route::get('/cm/unlike/{id}','CommentController@unlikeComment')->name('unlike-comment');
+Route::post('/book/{book}/cm/', 'CommentController@commentBook')->name('cm-book');
+Route::get('/cm/{id}', 'CommentController@deleteComment')->name('delete-comment');
+Route::get('/cm/like/{id}', 'CommentController@likeComment')->name('like-comment');
+Route::get('/cm/unlike/{id}', 'CommentController@unlikeComment')->name('unlike-comment');
 
