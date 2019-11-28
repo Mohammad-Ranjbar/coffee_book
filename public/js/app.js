@@ -2027,7 +2027,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('messages').then(function (response) {
         _this2.messages = response.data;
-        console.log(_this2.messages[1].message);
       });
     },
     sendMessage: function sendMessage() {
@@ -48232,7 +48231,7 @@ var render = function() {
               _vm._l(_vm.users, function(user, index) {
                 return _c("li", { key: index, staticClass: "py-2" }, [
                   _vm._v(
-                    "\n                       " +
+                    "\n                        " +
                       _vm._s(user.name) +
                       "\n                    "
                   )
