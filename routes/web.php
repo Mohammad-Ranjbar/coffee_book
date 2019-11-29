@@ -15,7 +15,7 @@ Route::get('/ts', function () {
     return view('login');
 });
 
-Route::get('/chat', 'MessageController@index');
+Route::get('/chat', 'MessageController@index')->name('chat');
 Route::get('/messages', 'MessageController@fetchMessages');
 Route::post('/messages', 'MessageController@sendMessages');
 

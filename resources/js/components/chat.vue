@@ -12,6 +12,7 @@
                     </ul>
                 </div>
                 <input
+                    @keydown="sendTypingEvent"
                     @keyup.enter="sendMessage"
                     v-model="newMessage"
                     type="text"
@@ -19,7 +20,9 @@
                     placeholder="پیام خود را وارد کنید ..."
                     class="form-control">
             </div>
-            <span class="text-muted">محمد در حال تایپ ...</span>
+            <span class="text-muted" v-if="activeUser">
+                {{activeUser.name}} در حال تایپ ...
+            </span>
         </div>
 
         <div class="col-4">
@@ -46,6 +49,7 @@
 				messages: [],
 				newMessage: '',
 				users: [],
+				activeUser: false,
 			};
 		},
 		created() {
@@ -63,6 +67,12 @@
 				})
 				.listen('MessageSent', (event) => {
 					this.messages.push(event.message);
+				})
+				.listenForWhisper('typing', user => {
+					this.activeUser = user;
+					setTimeout(() => {
+						this.activeUser = false;
+					}, 3000);
 				});
 		},
 		methods: {
@@ -78,6 +88,10 @@
 				});
 				axios.post('messages', { message: this.newMessage });
 				this.newMessage = '';
+			},
+			sendTypingEvent() {
+				Echo.join('chat')
+					.whisper('typing', this.user);
 			},
 		},
 
