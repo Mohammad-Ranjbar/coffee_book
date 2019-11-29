@@ -4,7 +4,7 @@
             <div class="card card-default">
                 <div class="card-header">پیام ها</div>
                 <div class="card-body p-0">
-                    <ul class="list-unstyled" style="height: 300px; overflow-y: scroll">
+                    <ul class="list-unstyled" style="height: 300px; overflow-y: scroll" v-chat-scroll>
                         <li class="p-2" v-for="(message ,index) in messages" :key="index">
                             <strong>{{message.user.name}} :</strong>
                             {{message.message}}

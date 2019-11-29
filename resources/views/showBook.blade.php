@@ -56,18 +56,19 @@
                             {{$comment->body}}
                         </div>
 
+                            @if (auth()->check())
                         <div class="card-footer">
-                            @if ($comment->likes->where('user_id',auth()->user()->id)->first())
-                                <a href="{{route('unlike-comment',['id' => $comment->id])}}">
-                                    <button class="btn btn-primary">لایک</button>
-                                </a>
+                                @if ($comment->likes->where('user_id',auth()->user()->id)->first() )
+                                    <a href="{{route('unlike-comment',['id' => $comment->id])}}">
+                                        <button class="btn btn-primary">لایک</button>
+                                    </a>
                                 @else
-                                <a href="{{route('like-comment',['id' => $comment->id])}}">
-                                    <button class="btn btn-outline-primary">لایک</button>
-                                </a>
-                            @endif
-
+                                    <a href="{{route('like-comment',['id' => $comment->id])}}">
+                                        <button class="btn btn-outline-primary">لایک</button>
+                                    </a>
+                                @endif
                         </div>
+                            @endif
                     </div>
                 @endforeach
 

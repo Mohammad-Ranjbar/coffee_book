@@ -1,7 +1,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+import VueChatScroll from 'vue-chat-scroll';
+Vue.use(VueChatScroll);
 Vue.component('flash', require('./components/Flash.vue').default);
 Vue.component('reply', require('./components/Reply.vue').default);
 Vue.component('favorite', require('./components/Favorite.vue').default);
