@@ -26,8 +26,8 @@
         </div>
 
         <div class="col-4">
-            <div class="card card-default">
-                <div class="crad-header">کاربران آنلاین</div>
+            <div class="card card-default" dir="rtl">
+                <div class="card-header" align="center">کاربران آنلاین</div>
                 <div class="card-body">
                     <ul>
                         <li class="py-2" v-for="(user , index) in users" :key="index">
@@ -35,6 +35,7 @@
                         </li>
                     </ul>
                 </div>
+                    <div class="card-footer"> تعداد کاربران آنلاین : {{users.length}}</div>
             </div>
         </div>
     </div>

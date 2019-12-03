@@ -1999,6 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
@@ -48330,8 +48331,12 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-4" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "crad-header" }, [_vm._v("کاربران آنلاین")]),
+        _c("div", { staticClass: "card card-default", attrs: { dir: "rtl" } }, [
+          _c(
+            "div",
+            { staticClass: "card-header", attrs: { align: "center" } },
+            [_vm._v("کاربران آنلاین")]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -48347,6 +48352,10 @@ var render = function() {
               }),
               0
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _vm._v(" تعداد کاربران آنلاین : " + _vm._s(_vm.users.length))
           ])
         ])
       ])
